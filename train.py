@@ -385,6 +385,9 @@ def train():
     dist.destroy_process_group() if torch.cuda.device_count() > 1 else None
     torch.cuda.empty_cache()
 
+    print("Keluaran")
+    print(best_fitness)
+
     return results
 
 
