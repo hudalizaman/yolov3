@@ -444,7 +444,8 @@ if __name__ == '__main__':
         except:
             pass
 
-        print(hyp)
+        print(type(hyp))
+        
 
 
         
