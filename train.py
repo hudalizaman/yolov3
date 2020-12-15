@@ -436,7 +436,7 @@ if __name__ == '__main__':
         train()  # train normally
 
     else:  # Evolve hyperparameters (optional)
-         try:
+        try:
             # Start Tensorboard with "tensorboard --logdir=runs", view at http://localhost:6006/
             from torch.utils.tensorboard import SummaryWriter
 
