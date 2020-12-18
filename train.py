@@ -1,5 +1,17 @@
 import argparse
 
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import GridSearchCV
+
 import torch.distributed as dist
 import torch.optim as optim
 import torch.optim.lr_scheduler as lr_scheduler
@@ -385,12 +397,12 @@ hyp = {'giou': 1.0,  # giou loss gain
        'scale': 0.05 * 0,  # image scale (+/- gain)
        'shear': 0.641 * 0}  # image shear (+/- deg)
 
-# Overwrite hyp with hyp*.txt (optional)
-f = glob.glob('hyp*.txt')
-if f:
-    print('Using %s' % f[0])
-    for k, v in zip(hyp.keys(), np.loadtxt(f[0])):
-        hyp[k] = v
+# # Overwrite hyp with hyp*.txt (optional)
+# f = glob.glob('hyp*.txt')
+# if f:
+#     print('Using %s' % f[0])
+#     for k, v in zip(hyp.keys(), np.loadtxt(f[0])):
+#         hyp[k] = v
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -446,6 +458,8 @@ if __name__ == '__main__':
             pass
 
         print(hyp)
+
+        clf = GridSearchCV(logreg, hyperparameters, cv=10)
 
 
 
