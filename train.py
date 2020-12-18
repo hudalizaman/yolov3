@@ -460,7 +460,7 @@ if __name__ == '__main__':
         print(hyp_x)
         iou_hyp = [0.1, 0.15, 0.2, 0.25]
         best_map = 0
-
+        best_iou = 0
         for i in iou_hyp:
             
             hyp = hyp_x
@@ -470,12 +470,15 @@ if __name__ == '__main__':
             map_now = train()
             if best_map < map_now:
                 best_map = map_now
+                best_iou = i
             
             print("=========================")
             print("=========================")
             print("=========================")
             print("Map Terbaik :")
             print(best_map)
+            print("IoU Terbaik : ")
+            print(best_iou)
 
         
 
