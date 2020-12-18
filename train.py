@@ -458,7 +458,7 @@ if __name__ == '__main__':
             pass
 
         print(hyp_x)
-        iou_hyp = [0.1, 0.15, 0.2, 0.25]
+        iou_hyp = [0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0,45, 0.50]
         best_map = 0
         best_iou = 0
         for i in iou_hyp:
