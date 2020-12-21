@@ -457,16 +457,50 @@ if __name__ == '__main__':
         except:
             pass
 
-        print(hyp_x)
-        iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        best_map = 0
-        best_iou = 0
-        for i in iou_hyp:
+        # print(hyp_x)
+        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        # best_map = 0
+        # best_iou = 0
+        # for i in iou_hyp:
             
+        #     hyp = hyp_x
+        #     hyp["iou_t"] = i
+        #     print("Parameternya : ")
+        #     print(hyp)
+        #     map_now = train()
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_iou = i
+            
+        #     print("=========================")
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("IoU Terbaik : ")
+        #     print(best_iou)
+
+        print(hyp_x)
+        from random import random
+        best_map = 0 
+        best_iou = 0
+
+        iter = [1,2,3,4,5]
+
+        for i in iter:
             hyp = hyp_x
-            hyp["iou_t"] = i
+            
+            iuonya = 1
+            while iuonya >= 0.5:
+                acak = random()
+                iuonya = iuonya*acak
+            else:
+                hyp["iou_t"] =iuonya
+                pass
+
             print("Parameternya : ")
-            print(hyp)
+            print(hyp) 
+
             map_now = train()
             if best_map < map_now:
                 best_map = map_now
@@ -479,6 +513,8 @@ if __name__ == '__main__':
             print(best_map)
             print("IoU Terbaik : ")
             print(best_iou)
+            
+
 
         
 
