@@ -586,8 +586,8 @@ if __name__ == '__main__':
         # %matplotlib inline
             
         hyp = hyp_x    
-        x = np.linspace(0, 0.5, 10).reshape(-1, 1)
-        y = train(x)
+        # x = np.linspace(0, 0.5, 10).reshape(-1, 1)
+        # y = train(x)
         
         optimizer = BayesianOptimization(train, {'x': (0, 0.5)}, random_state=27)
 
