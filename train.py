@@ -534,6 +534,8 @@ if __name__ == '__main__':
         # Parameter Space
         pbounds = {'x':(0 , 0.5)}
 
+        hyp = hyp_x
+
         optimizer = BayesianOptimization(
             f=train,
             pbounds = pbounds,
