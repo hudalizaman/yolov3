@@ -528,13 +528,13 @@ if __name__ == '__main__':
 
 
         # Bayesian OPT
-
+        hyp = hyp_x
         from bayes_opt import BayesianOptimization
 
         # Parameter Space
         pbounds = {'x':(0 , 0.5)}
 
-        hyp = hyp_x
+        
 
         optimizer = BayesianOptimization(
             f=train,
