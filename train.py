@@ -178,6 +178,8 @@ def train(x):
                                              pin_memory=True,
                                              collate_fn=dataset.collate_fn)
 
+    hyp["iou_t"]
+    
     # Model parameters
     model.nc = nc  # attach number of classes to model
     model.hyp = hyp  # attach hyperparameters to model
