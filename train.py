@@ -37,7 +37,7 @@ results_file = 'results.txt'
 
 def train(x):
 
-    hyp["iou_t"] = x
+    # hyp["iou_t"] = x
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
@@ -178,7 +178,7 @@ def train(x):
                                              pin_memory=True,
                                              collate_fn=dataset.collate_fn)
 
-    # hyp["iou_t"]
+    # hyp["iou_t"] = x
 
     # Model parameters
     model.nc = nc  # attach number of classes to model
