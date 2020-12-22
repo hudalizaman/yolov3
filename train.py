@@ -35,7 +35,9 @@ results_file = 'results.txt'
 
 
 
-def train():
+def train(x):
+
+    hyp["iou_t"] = x
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
@@ -376,6 +378,56 @@ def train():
 
     return best_fitness
 
+def posterior(optimizer, x_obs, y_obs, grid):
+    optimizer._gp.fit(x_obs, y_obs)
+
+    mu, sigma = optimizer._gp.predict(grid, return_std=True)
+    return mu, sigma
+
+def plot_gp(optimizer, x, y):
+    fig = plt.figure(figsize=(16, 10))
+    steps = len(optimizer.space)
+    fig.suptitle(
+        'Gaussian Process and Utility Function After {} Steps'.format(steps),
+        fontdict={'size':30}
+    )
+    
+    gs = gridspec.GridSpec(2, 1, height_ratios=[3, 1]) 
+    axis = plt.subplot(gs[0])
+    acq = plt.subplot(gs[1])
+    
+    x_obs = np.array([[res["params"]["x"]] for res in optimizer.res])
+    y_obs = np.array([res["target"] for res in optimizer.res])
+    
+    mu, sigma = posterior(optimizer, x_obs, y_obs, x)
+    axis.plot(x, y, linewidth=3, label='Target')
+    axis.plot(x_obs.flatten(), y_obs, 'D', markersize=8, label=u'Observations', color='r')
+    axis.plot(x, mu, '--', color='k', label='Prediction')
+
+    axis.fill(np.concatenate([x, x[::-1]]), 
+              np.concatenate([mu - 1.9600 * sigma, (mu + 1.9600 * sigma)[::-1]]),
+        alpha=.6, fc='c', ec='None', label='95% confidence interval')
+    
+    axis.set_xlim((-2, 10))
+    axis.set_ylim((None, None))
+    axis.set_ylabel('f(x)', fontdict={'size':20})
+    axis.set_xlabel('x', fontdict={'size':20})
+    
+    utility_function = UtilityFunction(kind="ucb", kappa=5, xi=0)
+    utility = utility_function.utility(x, optimizer._gp, 0)
+    acq.plot(x, utility, label='Utility Function', color='purple')
+    acq.plot(x[np.argmax(utility)], np.max(utility), '*', markersize=15, 
+             label=u'Next Best Guess', markerfacecolor='gold', markeredgecolor='k', markeredgewidth=1)
+    acq.set_xlim((-2, 10))
+    acq.set_ylim((0, np.max(utility) + 0.5))
+    acq.set_ylabel('Utility', fontdict={'size':20})
+    acq.set_xlabel('x', fontdict={'size':20})
+    
+    axis.legend(loc=2, bbox_to_anchor=(1.01, 1), borderaxespad=0.)
+    acq.legend(loc=2, bbox_to_anchor=(1.01, 1), borderaxespad=0.)
+
+
+
 # Hyperparameters (results68: 59.9 mAP@0.5 yolov3-spp-416) https://github.com/ultralytics/yolov3/issues/310
 
 hyp_x = {'giou': 1.0,  # giou loss gain
@@ -457,6 +509,8 @@ if __name__ == '__main__':
         except:
             pass
 
+        # Grid Search
+
         # print(hyp_x)
         # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
         # best_map = 0
@@ -480,41 +534,80 @@ if __name__ == '__main__':
         #     print("IoU Terbaik : ")
         #     print(best_iou)
 
-        print(hyp_x)
-        from random import random
-        best_map = 0 
-        best_iou = 0
+        # Random Search
 
-        iter = [1,2,3,4,5]
+        # print(hyp_x)
+        # from random import random
+        # best_map = 0 
+        # best_iou = 0
 
-        for i in iter:
-            hyp = hyp_x
+        # iter = [1,2,3,4,5]
+
+        # for i in iter:
+        #     hyp = hyp_x
             
-            iuonya = 1
-            while iuonya >= 0.5:
-                acak = random()
-                iuonya = iuonya*acak
-            else:
-                hyp["iou_t"] =iuonya
-                pass
+        #     iuonya = 1
+        #     while iuonya >= 0.5:
+        #         acak = random()
+        #         iuonya = iuonya*acak
+        #     else:
+        #         hyp["iou_t"] =iuonya
+        #         pass
 
-            print("Parameternya : ")
-            print(hyp) 
+        #     print("Parameternya : ")
+        #     print(hyp) 
 
-            map_now = train()
-            if best_map < map_now:
-                best_map = map_now
-                best_iou = i
+        #     map_now = train()
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_iou = i
             
-            print("=========================")
-            print("=========================")
-            print("=========================")
-            print("Map Terbaik :")
-            print(best_map)
-            print("IoU Terbaik : ")
-            print(best_iou)
-            
+        #     print("=========================")
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("IoU Terbaik : ")
+        #     print(best_iou)
 
+
+        # Bayesian OPT
+
+        from bayes_opt import BayesianOptimization
+        from bayes_opt import UtilityFunction
+        import numpy as np
+
+        import matplotlib.pyplot as plt
+        from matplotlib import gridspec
+        # %matplotlib inline
+            
+        x = np.linspace(0, 0.5, 10).reshape(-1, 1)
+        y = train(x)
+
+        optimizer = BayesianOptimization(train, {'x': (0, 0.5)}, random_state=27)
+
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
+
+        optimizer.maximize(init_points=0, n_iter=1, kappa=5)
+        plot_gp(optimizer, x, y)
 
         
 
