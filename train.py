@@ -585,9 +585,10 @@ if __name__ == '__main__':
         from matplotlib import gridspec
         # %matplotlib inline
             
+        hyp = hyp_x    
         x = np.linspace(0, 0.5, 10).reshape(-1, 1)
         y = train(x)
-        hyp = hyp_x
+        
         optimizer = BayesianOptimization(train, {'x': (0, 0.5)}, random_state=27)
 
         plot_gp(optimizer, x, y)
