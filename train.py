@@ -539,7 +539,7 @@ if __name__ == '__main__':
         optimizer = BayesianOptimization(
             f=train,
             pbounds = pbounds,
-            verbose = 2,
+            verbose = 1,
             random_state=1
         )
 
