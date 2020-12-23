@@ -38,6 +38,7 @@ results_file = 'results.txt'
 def train(x):
 
     hyp["iou_t"] = x
+    print(hyp)
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
@@ -377,10 +378,10 @@ def train(x):
     dist.destroy_process_group() if torch.cuda.device_count() > 1 else None
     torch.cuda.empty_cache()
 
-    print("Keluaran")
-    print(best_fitness[0])
-    print("=============")
-    print(type(best_fitness[0]))
+    # print("Keluaran")
+    # print(best_fitness[0])
+    # print("=============")
+    # print(type(best_fitness[0]))
     # from random import random
 
     return best_fitness[0]
