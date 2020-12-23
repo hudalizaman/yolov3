@@ -548,8 +548,8 @@ if __name__ == '__main__':
         )
 
         optimizer.maximize(
-            init_points = 2,
-            n_iter = 5
+            init_points = 3,
+            n_iter = 10
         )
 
 
