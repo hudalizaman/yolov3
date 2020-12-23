@@ -379,9 +379,11 @@ def train(x):
 
     print("Keluaran")
     print(best_fitness)
-    from random import random
+    print("=============")
+    print(type(best_fitness))
+    # from random import random
 
-    return random()
+    return best_fitness
 
 
 
