@@ -379,6 +379,7 @@ def train(x):
 
     print("Keluaran")
     print(best_fitness)
+    from random import random
 
     return random()
 
