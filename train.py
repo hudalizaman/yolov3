@@ -378,12 +378,12 @@ def train(x):
     torch.cuda.empty_cache()
 
     print("Keluaran")
-    print(best_fitness)
+    print(best_fitness[0])
     print("=============")
-    print(type(best_fitness))
+    print(type(best_fitness[0]))
     # from random import random
 
-    return best_fitness
+    return best_fitness[0]
 
 
 
