@@ -380,7 +380,7 @@ def train(x):
     print("Keluaran")
     print(best_fitness)
 
-    return best_fitness
+    return random()
 
 
 
@@ -539,7 +539,7 @@ if __name__ == '__main__':
         optimizer = BayesianOptimization(
             f=train,
             pbounds = pbounds,
-            verbose = 1,
+            verbose = 2,
             random_state=1
         )
 
