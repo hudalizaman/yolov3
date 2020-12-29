@@ -551,6 +551,11 @@ if __name__ == '__main__':
             init_points = 3,
             n_iter = 10
         )
+        
+        print(optimizer.max)
+
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
 
 
