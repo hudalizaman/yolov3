@@ -517,7 +517,7 @@ if __name__ == '__main__':
             print("Parameternya : ")
             print(hyp) 
 
-            map_now = train()
+            map_now = train(iuonya)
             if best_map < map_now:
                 best_map = map_now
                 best_iou = i
