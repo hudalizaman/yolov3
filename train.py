@@ -494,7 +494,7 @@ if __name__ == '__main__':
         #     print("IoU Terbaik : ")
         #     print(best_iou)
 
-        Random Search
+        # Random Search
 
         print(hyp_x)
         from random import random
