@@ -494,68 +494,68 @@ if __name__ == '__main__':
         #     print("IoU Terbaik : ")
         #     print(best_iou)
 
-        # Random Search
+        Random Search
 
-        # print(hyp_x)
-        # from random import random
-        # best_map = 0 
-        # best_iou = 0
+        print(hyp_x)
+        from random import random
+        best_map = 0 
+        best_iou = 0
 
-        # iter = [1,2,3,4,5]
+        iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 
-        # for i in iter:
-        #     hyp = hyp_x
+        for i in iter:
+            hyp = hyp_x
             
-        #     iuonya = 1
-        #     while iuonya >= 0.5:
-        #         acak = random()
-        #         iuonya = iuonya*acak
-        #     else:
-        #         hyp["iou_t"] =iuonya
-        #         pass
+            iuonya = 1
+            while iuonya >= 0.5:
+                acak = random()
+                iuonya = iuonya*acak
+            else:
+                hyp["iou_t"] =iuonya
+                pass
 
-        #     print("Parameternya : ")
-        #     print(hyp) 
+            print("Parameternya : ")
+            print(hyp) 
 
-        #     map_now = train()
-        #     if best_map < map_now:
-        #         best_map = map_now
-        #         best_iou = i
+            map_now = train()
+            if best_map < map_now:
+                best_map = map_now
+                best_iou = i
             
-        #     print("=========================")
-        #     print("=========================")
-        #     print("=========================")
-        #     print("Map Terbaik :")
-        #     print(best_map)
-        #     print("IoU Terbaik : ")
-        #     print(best_iou)
+            print("=========================")
+            print("=========================")
+            print("=========================")
+            print("Map Terbaik :")
+            print(best_map)
+            print("IoU Terbaik : ")
+            print(best_iou)
 
 
         # Bayesian OPT
-        hyp = hyp_x
-        from bayes_opt import BayesianOptimization
+        # hyp = hyp_x
+        # from bayes_opt import BayesianOptimization
 
-        # Parameter Space
-        pbounds = {'x':(0 , 0.5)}
+        # # Parameter Space
+        # pbounds = {'x':(0 , 0.5)}
 
         
 
-        optimizer = BayesianOptimization(
-            f=train,
-            pbounds = pbounds,
-            verbose = 2,
-            random_state=1
-        )
+        # optimizer = BayesianOptimization(
+        #     f=train,
+        #     pbounds = pbounds,
+        #     verbose = 2,
+        #     random_state=1
+        # )
 
-        optimizer.maximize(
-            init_points = 3,
-            n_iter = 10
-        )
+        # optimizer.maximize(
+        #     init_points = 3,
+        #     n_iter = 10
+        # )
         
-        print(optimizer.max)
+        # print(optimizer.max)
 
-        for i, res in enumerate(optimizer.res):
-            print("Iteration {}: \n\t{}".format(i, res))
+        # for i, res in enumerate(optimizer.res):
+        #     print("Iteration {}: \n\t{}".format(i, res))
 
 
 
