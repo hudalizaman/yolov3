@@ -511,16 +511,16 @@ if __name__ == '__main__':
                 acak = random()
                 iuonya = iuonya*acak
             else:
-                hyp["iou_t"] =iuonya
+                # hyp["iou_t"] =iuonya
                 pass
 
             print("Parameternya : ")
-            print(hyp) 
+            print(iuonya) 
 
             map_now = train(iuonya)
             if best_map < map_now:
                 best_map = map_now
-                best_iou = i
+                best_iou = iuonya
             
             print("=========================")
             print("=========================")
