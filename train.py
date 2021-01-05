@@ -523,6 +523,7 @@ if __name__ == '__main__':
                 best_iou = iuonya
             
             print("=========================")
+            print("Iterasi ke : "+str(i))
             print("=========================")
             print("=========================")
             print("Map Terbaik :")
