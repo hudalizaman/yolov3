@@ -509,7 +509,7 @@ if __name__ == '__main__':
             iuonya = 1
             while iuonya >= 0.5:
                 acak = random()
-                iuonya = iuonya*acak
+                iuonya = 0.5*acak
             else:
                 # hyp["iou_t"] =iuonya
                 pass
