@@ -517,7 +517,7 @@ if __name__ == '__main__':
             print("Parameternya : ")
             print(iuonya) 
 
-            map_now = train(iuonya)
+            map_now = iuonya**2 - 5 * iuonya + 35
             if best_map < map_now:
                 best_map = map_now
                 best_iou = iuonya
