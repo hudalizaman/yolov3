@@ -496,14 +496,16 @@ if __name__ == '__main__':
 
         # Random Search
 
-        print(hyp_x)
+        # print(hyp_x)
         from random import random
         best_map = 0 
         best_iou = 0
 
         iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-
+        hasil = []
         for i in iter:
+            hasil_sementara = []
+
             hyp = hyp_x
             
             iuonya = 1
@@ -522,6 +524,8 @@ if __name__ == '__main__':
                 best_map = map_now
                 best_iou = iuonya
             
+            hasil_sementara = [i,iuonya,map_now]
+
             print("=========================")
             print("Iterasi ke : "+str(i))
             print("=========================")
@@ -530,7 +534,9 @@ if __name__ == '__main__':
             print(best_map)
             print("IoU Terbaik : ")
             print(best_iou)
+            hasil.append(hasil_sementara)
 
+        print(hasil)
 
         # Bayesian OPT
         # hyp = hyp_x
