@@ -537,7 +537,7 @@ if __name__ == '__main__':
 
             if best_map < map_now:
                 best_map = map_now
-                best_iou = baru
+                best_iou = iou_baru
             
             hasil_sementara = [i,iou_baru,map_now]
             iou_lama = iou_baru
