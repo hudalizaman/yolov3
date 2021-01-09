@@ -526,7 +526,7 @@ if __name__ == '__main__':
 
             acak = random()
             iou_baru = 0.5*acak
-            while iou_lama = iou_baru:
+            while iou_lama == iou_baru:
                 iou_baru = 0.5*acak
             else:
 
