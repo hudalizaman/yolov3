@@ -518,33 +518,29 @@ if __name__ == '__main__':
 
         iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
         hasil = []
+        hyp = hyp_x
+        iou_lama = 0
+        iou_baru = 0
         for i in iter:
             hasil_sementara = []
 
-            hyp = hyp_x
-            
-            iuonya = 1
             acak = random()
-
-            
-
-            while iuonya > 0.5:
-                acak = random()
-                iuonya = 0.5*acak
+            iou_baru = 0.5*acak
+            while iou_lama = iou_baru:
+                iou_baru = 0.5*acak
             else:
-                print("Parameternya : ")
-                print(iuonya) 
 
-                map_now = iuonya ** 2
                 pass
 
+            map_now = train(iou_baru)
+            
 
             if best_map < map_now:
                 best_map = map_now
-                best_iou = iuonya
+                best_iou = baru
             
-            hasil_sementara = [i,iuonya,map_now]
-
+            hasil_sementara = [i,iou_baru,map_now]
+            iou_lama = iou_baru
             print("=========================")
             print("Iterasi ke : "+str(i))
             print("=========================")
