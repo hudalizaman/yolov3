@@ -38,7 +38,9 @@ results_file = 'results.txt'
 def train(x):
 
     hyp["iou_t"] = x
+    print("Parameternya : ")
     print(hyp)
+    # print(hyp)
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
@@ -469,92 +471,91 @@ if __name__ == '__main__':
         except:
             pass
 
-        # Grid Search
+        # # Grid Search
 
-        # print(hyp_x)
-        iou_hyp = []
-        iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-        for i in iter:
-            iounya = (i/13) * 0.5
-            iou_hyp.append(iounya)
-
-        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        best_map = 0
-        best_iou = 0
-        hasil = []
-        no = 1
-        for i in iou_hyp:
-            
-            hyp = hyp_x
-            # hyp["iou_t"] = i
-            print("Parameternya : ")
-            print(hyp)
-            map_now = train(i)
-            if best_map < map_now:
-                best_map = map_now
-                best_iou = i
-            hasil_sementara = [no,i,map_now]
-            no= no +1
-            print("=========================")
-            print("Iterasi ke : "+str(no))
-            print("=========================")
-            print("=========================")
-            print("Map Terbaik :")
-            print(best_map)
-            print("IoU Terbaik : ")
-            print(best_iou)
-    
-            hasil.append(hasil_sementara)
-
-        print(hasil)
-
-        # Random Search
-
-        # # print(hyp_x)
-        # from random import random
-        # best_map = 0 
-        # best_iou = 0
-
+        # iou_hyp = []
         # iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-        # hasil = []
         # for i in iter:
-        #     hasil_sementara = []
+        #     iounya = (i/13) * 0.5
+        #     iou_hyp.append(iounya)
 
-        #     hyp = hyp_x
+        # # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        # best_map = 0
+        # best_iou = 0
+        # hasil = []
+        # no = 1
+        # for i in iou_hyp:
             
-        #     iuonya = 1
-        #     acak = random()
-
-        #     if
-
-        #     while iuonya >= 0.5:
-        #         acak = random()
-        #         iuonya = 0.5*acak
-        #     else:
-        #         print("Parameternya : ")
-        #         print(iuonya) 
-
-        #         map_now = train(iuonya)
-        #         pass
-
-
+        #     hyp = hyp_x
+        #     # hyp["iou_t"] = i
+        #     # print("Parameternya : ")
+        #     # print(hyp)
+        #     map_now = train(i)
         #     if best_map < map_now:
         #         best_map = map_now
-        #         best_iou = iuonya
-            
-        #     hasil_sementara = [i,iuonya,map_now]
-
+        #         best_iou = i
+        #     hasil_sementara = [no,i,map_now]
+        #     no= no +1
         #     print("=========================")
-        #     print("Iterasi ke : "+str(i))
+        #     print("Iterasi ke : "+str(no))
         #     print("=========================")
         #     print("=========================")
         #     print("Map Terbaik :")
         #     print(best_map)
         #     print("IoU Terbaik : ")
         #     print(best_iou)
+    
         #     hasil.append(hasil_sementara)
 
         # print(hasil)
+
+        # Random Search
+
+        # print(hyp_x)
+        from random import random
+        best_map = 0 
+        best_iou = 0
+
+        iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+        hasil = []
+        for i in iter:
+            hasil_sementara = []
+
+            hyp = hyp_x
+            
+            iuonya = 1
+            acak = random()
+
+            
+
+            while iuonya > 0.5:
+                acak = random()
+                iuonya = 0.5*acak
+            else:
+                print("Parameternya : ")
+                print(iuonya) 
+
+                map_now = iuonya ** 2
+                pass
+
+
+            if best_map < map_now:
+                best_map = map_now
+                best_iou = iuonya
+            
+            hasil_sementara = [i,iuonya,map_now]
+
+            print("=========================")
+            print("Iterasi ke : "+str(i))
+            print("=========================")
+            print("=========================")
+            print("Map Terbaik :")
+            print(best_map)
+            print("IoU Terbaik : ")
+            print(best_iou)
+            hasil.append(hasil_sementara)
+
+        print(hasil)
 
         # Bayesian OPT
         # hyp = hyp_x
