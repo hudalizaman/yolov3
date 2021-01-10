@@ -532,7 +532,7 @@ if __name__ == '__main__':
 
                 pass
 
-            map_now = iou_baru ** 3 - 3 * iou_baru ** 2 + 12 * iou_baru - 3
+            map_now = train(iou_baru)
             
 
             if best_map < map_now:
