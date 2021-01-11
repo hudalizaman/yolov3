@@ -526,10 +526,10 @@ if __name__ == '__main__':
         for i in iter:
             hasil_sementara = []
 
-            acak_baru = random.randint(1,100)
+            acak_baru = random.randint(1,100)/100
             iou_baru = 0.5*acak_baru
             while acak_baru == acak_lama:
-                iou_baru = 0.5*acak_baru/100
+                iou_baru = 0.5*acak_baru
             else:
                 pass
 
