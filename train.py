@@ -512,7 +512,7 @@ if __name__ == '__main__':
         # Random Search
 
         # print(hyp_x)
-        from random import random
+        import random
         best_map = 0 
         best_iou = 0
 
