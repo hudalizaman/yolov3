@@ -529,7 +529,7 @@ if __name__ == '__main__':
             while iou_lama == iou_baru:
                 iou_baru = 0.5*acak
             else:
-                break
+                pass
 
             map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
             
