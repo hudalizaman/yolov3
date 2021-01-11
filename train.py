@@ -521,13 +521,15 @@ if __name__ == '__main__':
         hyp = hyp_x
         iou_lama = 0
         iou_baru = 0
+        acak_lama = 0
+        acak_baru = 1
         for i in iter:
             hasil_sementara = []
 
-            acak = random()
-            iou_baru = 0.5*acak
-            while iou_lama == iou_baru:
-                iou_baru = 0.5*acak
+            acak_baru = random.randint(1,100)
+            iou_baru = 0.5*acak_baru
+            while acak_baru == acak_lama:
+                iou_baru = 0.5*acak_baru
             else:
                 pass
 
@@ -539,7 +541,7 @@ if __name__ == '__main__':
                 best_iou = iou_baru
             
             hasil_sementara = [i,iou_baru,map_now]
-            iou_lama = iou_baru
+            acak_lama = acak_baru
             print("=========================")
             print("Iterasi ke : "+str(i))
             print("=========================")
