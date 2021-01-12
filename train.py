@@ -521,7 +521,7 @@ if __name__ == '__main__':
         hyp = hyp_x
         iou_lama = 0
         iou_baru = 0
-        acak_lama = 0
+        acak_lama = 0.0
         acak_baru = 1
         for i in iter:
             hasil_sementara = []
