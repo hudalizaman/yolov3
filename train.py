@@ -527,6 +527,9 @@ if __name__ == '__main__':
             hasil_sementara = []
 
             acak_baru = random.randint(1,100)/100
+            print("=========================")
+            print(acak_baru)
+            print("=========================")
             iou_baru = 0.5*acak_baru
             # while acak_baru == acak_lama:
             #     iou_baru = 0.5*acak_baru
