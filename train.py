@@ -533,9 +533,9 @@ if __name__ == '__main__':
             else:
                 pass
 
-            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-            print(iou_baru)
-            map_now = train(iou_baru)
+            map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+            # print(iou_baru)
+            # map_now = train(iou_baru)
 
             if best_map < map_now:
                 best_map = map_now
