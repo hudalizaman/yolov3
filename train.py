@@ -533,7 +533,9 @@ if __name__ == '__main__':
         print("=========================")
         print(iou_list)
         print("=========================")
+        nmr = 0 
         for i in iou_list:
+            nmr = nmr +1
             hasil_sementara = []
 
             # acak_baru = random.randint(1,100)/100
@@ -554,10 +556,10 @@ if __name__ == '__main__':
                 best_map = map_now
                 best_iou = iou_baru
             
-            hasil_sementara = [i,iou_baru,map_now]
+            hasil_sementara = [nmr,iou_baru,map_now]
             # acak_lama = acak_baru
             print("=========================")
-            print("Iterasi ke : "+str(i))
+            print("Iterasi ke : "+str(nmr))
             print("=========================")
             print("=========================")
             print("Map Terbaik :")
