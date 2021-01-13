@@ -515,21 +515,28 @@ if __name__ == '__main__':
         import random
         best_map = 0 
         best_iou = 0
-
-        iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-        hasil = []
-        hyp = hyp_x
-        iou_lama = 0
-        iou_baru = 0
         acak_lama = 0.0
         acak_baru = 1
+        iou_list = []
+        iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+
         for i in iter:
+            acak_baru = random.randint(1,100)/100
+            iou_list.append(acak_baru)
+
+        hasil = []
+        hyp = hyp_x
+        # iou_lama = 0
+        iou_baru = 0
+        # acak_lama = 0.0
+        # acak_baru = 1
+        for i in acak_baru:
             hasil_sementara = []
 
-            acak_baru = random.randint(1,100)/100
-            print("=========================")
-            print(acak_baru)
-            print("=========================")
+            # acak_baru = random.randint(1,100)/100
+            # print("=========================")
+            # print(acak_baru)
+            # print("=========================")
             iou_baru = 0.5*acak_baru
             # while acak_baru == acak_lama:
             #     iou_baru = 0.5*acak_baru
@@ -545,7 +552,7 @@ if __name__ == '__main__':
                 best_iou = iou_baru
             
             hasil_sementara = [i,iou_baru,map_now]
-            acak_lama = acak_baru
+            # acak_lama = acak_baru
             print("=========================")
             print("Iterasi ke : "+str(i))
             print("=========================")
