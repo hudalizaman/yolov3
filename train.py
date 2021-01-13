@@ -540,7 +540,7 @@ if __name__ == '__main__':
             # print("=========================")
             # print(acak_baru)
             # print("=========================")
-            iou_baru = 0.5*acak_baru
+            iou_baru = 0.5*i
             # while acak_baru == acak_lama:
             #     iou_baru = 0.5*acak_baru
             # else:
