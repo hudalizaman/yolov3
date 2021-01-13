@@ -530,6 +530,9 @@ if __name__ == '__main__':
         iou_baru = 0
         # acak_lama = 0.0
         # acak_baru = 1
+        print("=========================")
+        print(iou_list)
+        print("=========================")
         for i in iou_list:
             hasil_sementara = []
 
