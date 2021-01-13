@@ -530,7 +530,7 @@ if __name__ == '__main__':
         iou_baru = 0
         # acak_lama = 0.0
         # acak_baru = 1
-        for i in acak_baru:
+        for i in iou_list:
             hasil_sementara = []
 
             # acak_baru = random.randint(1,100)/100
