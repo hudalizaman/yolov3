@@ -37,7 +37,7 @@ results_file = 'results.txt'
 
 def train(x):
 
-    hyp["iou_t"] = x
+    hyp["lr0"] = x
     print("Parameternya : ")
     print(hyp)
     # print(hyp)
@@ -473,18 +473,22 @@ if __name__ == '__main__':
 
         # Grid Search
 
-        iou_hyp = []
+        # iou_hyp = []
+        lr_hyp = []
         iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
         for i in iter:
-            iounya = (i/13) * 0.001
-            iou_hyp.append(iounya)
+            # iounya = (i/13) * 0.001
+            # iou_hyp.append(iounya)
+            lrnya = (i/13) * 0.001
+            lr_hyp.append(lrnya)
 
         # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
         best_map = 0
-        best_iou = 0
+        # best_iou = 0
+        best_lr = 0
         hasil = []
         no = 1
-        for i in iou_hyp:
+        for i in lr_hyp:
             
             hyp = hyp_x
             # hyp["iou_t"] = i
@@ -493,7 +497,7 @@ if __name__ == '__main__':
             map_now = train(i)
             if best_map < map_now:
                 best_map = map_now
-                best_iou = i
+                best_lr = i
             hasil_sementara = [no,i,map_now]
             no= no +1
             print("=========================")
@@ -503,7 +507,8 @@ if __name__ == '__main__':
             print("Map Terbaik :")
             print(best_map)
             print("IoU Terbaik : ")
-            print(best_iou)
+            # print(best_iou)
+            print(best_lr)
     
             hasil.append(hasil_sementara)
 
