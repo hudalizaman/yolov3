@@ -397,8 +397,8 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'cls_pw': 1.0,  # cls BCELoss positive_weight
        'obj': 64.3,  # obj loss gain (*=img_size/320 if img_size != 320)
        'obj_pw': 1.0,  # obj BCELoss positive_weight
-    #    'iou_t': 0.225,  # iou training threshold
-       'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+       'iou_t': 0.225,  # iou training threshold
+    #    'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
        'momentum': 0.937,  # SGD momentum
        'weight_decay': 0.000484,  # optimizer weight decay
@@ -471,104 +471,104 @@ if __name__ == '__main__':
         except:
             pass
 
-        # # Grid Search
+        # Grid Search
 
-        # iou_hyp = []
-        # iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-        # for i in iter:
-        #     iounya = (i/13) * 0.5
-        #     iou_hyp.append(iounya)
-
-        # # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        # best_map = 0
-        # best_iou = 0
-        # hasil = []
-        # no = 1
-        # for i in iou_hyp:
-            
-        #     hyp = hyp_x
-        #     # hyp["iou_t"] = i
-        #     # print("Parameternya : ")
-        #     # print(hyp)
-        #     map_now = train(i)
-        #     if best_map < map_now:
-        #         best_map = map_now
-        #         best_iou = i
-        #     hasil_sementara = [no,i,map_now]
-        #     no= no +1
-        #     print("=========================")
-        #     print("Iterasi ke : "+str(no))
-        #     print("=========================")
-        #     print("=========================")
-        #     print("Map Terbaik :")
-        #     print(best_map)
-        #     print("IoU Terbaik : ")
-        #     print(best_iou)
-    
-        #     hasil.append(hasil_sementara)
-
-        # print(hasil)
-
-        # Random Search
-
-        # print(hyp_x)
-        import random
-        best_map = 0 
-        best_iou = 0
-        acak_lama = 0.0
-        acak_baru = 1
-        iou_list = []
+        iou_hyp = []
         iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-
         for i in iter:
-            acak_baru = random.randint(1,100)/100
-            iou_list.append(acak_baru)
+            iounya = (i/13) * 0.001
+            iou_hyp.append(iounya)
 
+        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        best_map = 0
+        best_iou = 0
         hasil = []
-        hyp = hyp_x
-        # iou_lama = 0
-        iou_baru = 0
-        # acak_lama = 0.0
-        # acak_baru = 1
-        print("=========================")
-        print(iou_list)
-        print("=========================")
-        nmr = 0 
-        for i in iou_list:
-            nmr = nmr +1
-            hasil_sementara = []
-
-            # acak_baru = random.randint(1,100)/100
-            # print("=========================")
-            # print(acak_baru)
-            # print("=========================")
-            iou_baru = 0.5*i
-            # while acak_baru == acak_lama:
-            #     iou_baru = 0.5*acak_baru
-            # else:
-            #     pass
-
-            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-            print(iou_baru)
-            map_now = train(iou_baru)
-
+        no = 1
+        for i in iou_hyp:
+            
+            hyp = hyp_x
+            # hyp["iou_t"] = i
+            # print("Parameternya : ")
+            # print(hyp)
+            map_now = train(i)
             if best_map < map_now:
                 best_map = map_now
-                best_iou = iou_baru
-            
-            hasil_sementara = [nmr,iou_baru,map_now]
-            # acak_lama = acak_baru
+                best_iou = i
+            hasil_sementara = [no,i,map_now]
+            no= no +1
             print("=========================")
-            print("Iterasi ke : "+str(nmr))
+            print("Iterasi ke : "+str(no))
             print("=========================")
             print("=========================")
             print("Map Terbaik :")
             print(best_map)
             print("IoU Terbaik : ")
             print(best_iou)
+    
             hasil.append(hasil_sementara)
 
         print(hasil)
+
+        # Random Search
+
+        # print(hyp_x)
+        # import random
+        # best_map = 0 
+        # best_iou = 0
+        # acak_lama = 0.0
+        # acak_baru = 1
+        # iou_list = []
+        # iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+
+        # for i in iter:
+        #     acak_baru = random.randint(1,100)/100
+        #     iou_list.append(acak_baru)
+
+        # hasil = []
+        # hyp = hyp_x
+        # # iou_lama = 0
+        # iou_baru = 0
+        # # acak_lama = 0.0
+        # # acak_baru = 1
+        # print("=========================")
+        # print(iou_list)
+        # print("=========================")
+        # nmr = 0 
+        # for i in iou_list:
+        #     nmr = nmr +1
+        #     hasil_sementara = []
+
+        #     # acak_baru = random.randint(1,100)/100
+        #     # print("=========================")
+        #     # print(acak_baru)
+        #     # print("=========================")
+        #     iou_baru = 0.5*i
+        #     # while acak_baru == acak_lama:
+        #     #     iou_baru = 0.5*acak_baru
+        #     # else:
+        #     #     pass
+
+        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+        #     print(iou_baru)
+        #     map_now = train(iou_baru)
+
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_iou = iou_baru
+            
+        #     hasil_sementara = [nmr,iou_baru,map_now]
+        #     # acak_lama = acak_baru
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(nmr))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("IoU Terbaik : ")
+        #     print(best_iou)
+        #     hasil.append(hasil_sementara)
+
+        # print(hasil)
 
         # Bayesian OPT
         # hyp = hyp_x
