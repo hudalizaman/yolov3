@@ -475,7 +475,7 @@ if __name__ == '__main__':
 
         # iou_hyp = []
         lr_hyp = []
-        iter = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+        iter = [1,2,3,4,5,6,7,8,9,10,11]
         for i in iter:
             # iounya = (i/13) * 0.001
             # iou_hyp.append(iounya)
