@@ -37,7 +37,7 @@ results_file = 'results.txt'
 
 def train(x):
 
-    hyp["lr0"] = x
+    hyp["momentum"] = x
     print("Parameternya : ")
     print(hyp)
     # print(hyp)
@@ -398,9 +398,9 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'obj': 64.3,  # obj loss gain (*=img_size/320 if img_size != 320)
        'obj_pw': 1.0,  # obj BCELoss positive_weight
        'iou_t': 0.225,  # iou training threshold
-    #    'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+       'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
-       'momentum': 0.937,  # SGD momentum
+    #    'momentum': 0.937,  # SGD momentum
        'weight_decay': 0.000484,  # optimizer weight decay
        'fl_gamma': 0.0,  # focal loss gamma (efficientDet default is gamma=1.5)
        'hsv_h': 0.0138,  # image HSV-Hue augmentation (fraction)
@@ -516,90 +516,90 @@ if __name__ == '__main__':
 
         # Random Search
 
-        print(hyp_x)
-        import random
-        best_map = 0 
-        best_lr = 0
-        acak_lama = 0.0
-        acak_baru = 1
-        lr_list = []
-        iter = [1,2,3,4,5,6,7,8,9,10]
-
-        for i in iter:
-            acak_baru = random.randint(1,100)/100
-            lr_list.append(acak_baru)
-
-        hasil = []
-        hyp = hyp_x
-        # iou_lama = 0
-        lr_baru = 0
+        # print(hyp_x)
+        # import random
+        # best_map = 0 
+        # best_lr = 0
         # acak_lama = 0.0
         # acak_baru = 1
-        print("=========================")
-        print(lr_list)
-        print("=========================")
-        nmr = 0 
-        for i in lr_list:
-            nmr = nmr +1
-            hasil_sementara = []
+        # lr_list = []
+        # iter = [1,2,3,4,5,6,7,8,9,10]
 
-            # acak_baru = random.randint(1,100)/100
-            # print("=========================")
-            # print(acak_baru)
-            # print("=========================")
-            lr_baru = 0.001*i
-            # while acak_baru == acak_lama:
-            #     iou_baru = 0.5*acak_baru
-            # else:
-            #     pass
+        # for i in iter:
+        #     acak_baru = random.randint(1,100)/100
+        #     lr_list.append(acak_baru)
 
-            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-            print(lr_baru)
-            map_now = train(lr_baru)
+        # hasil = []
+        # hyp = hyp_x
+        # # iou_lama = 0
+        # lr_baru = 0
+        # # acak_lama = 0.0
+        # # acak_baru = 1
+        # print("=========================")
+        # print(lr_list)
+        # print("=========================")
+        # nmr = 0 
+        # for i in lr_list:
+        #     nmr = nmr +1
+        #     hasil_sementara = []
 
-            if best_map < map_now:
-                best_map = map_now
-                best_lr = lr_baru
+        #     # acak_baru = random.randint(1,100)/100
+        #     # print("=========================")
+        #     # print(acak_baru)
+        #     # print("=========================")
+        #     lr_baru = 0.001*i
+        #     # while acak_baru == acak_lama:
+        #     #     iou_baru = 0.5*acak_baru
+        #     # else:
+        #     #     pass
+
+        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+        #     print(lr_baru)
+        #     map_now = train(lr_baru)
+
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_lr = lr_baru
             
-            hasil_sementara = [nmr,lr_baru,map_now]
-            # acak_lama = acak_baru
-            print("=========================")
-            print("Iterasi ke : "+str(nmr))
-            print("=========================")
-            print("=========================")
-            print("Map Terbaik :")
-            print(best_map)
-            print("LR Terbaik : ")
-            print(best_lr)
-            hasil.append(hasil_sementara)
+        #     hasil_sementara = [nmr,lr_baru,map_now]
+        #     # acak_lama = acak_baru
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(nmr))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("LR Terbaik : ")
+        #     print(best_lr)
+        #     hasil.append(hasil_sementara)
 
-        print(hasil)
+        # print(hasil)
 
         # Bayesian OPT
-        # hyp = hyp_x
-        # from bayes_opt import BayesianOptimization
+        hyp = hyp_x
+        from bayes_opt import BayesianOptimization
 
-        # # Parameter Space
-        # pbounds = {'x':(0 , 0.5)}
+        # Parameter Space
+        pbounds = {'x':(0.9 , 1)}
 
         
 
-        # optimizer = BayesianOptimization(
-        #     f=train,
-        #     pbounds = pbounds,
-        #     verbose = 2,
-        #     random_state=1
-        # )
+        optimizer = BayesianOptimization(
+            f=train,
+            pbounds = pbounds,
+            verbose = 2,
+            random_state=1
+        )
 
-        # optimizer.maximize(
-        #     init_points = 3,
-        #     n_iter = 10
-        # )
+        optimizer.maximize(
+            init_points = 3,
+            n_iter = 7
+        )
         
-        # print(optimizer.max)
+        print(optimizer.max)
 
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
 
 
