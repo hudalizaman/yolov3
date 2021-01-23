@@ -480,7 +480,7 @@ if __name__ == '__main__':
             # iounya = (i/13) * 0.001
             # iou_hyp.append(iounya)
             momentumnya = (i/10) * 0.1 + 0.9
-            momentum_hyp.append(momwntunya)
+            momentum_hyp.append(momwntumnya)
 
         # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
         best_map = 0
