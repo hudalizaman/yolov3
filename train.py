@@ -516,90 +516,90 @@ if __name__ == '__main__':
 
         # Random Search
 
-        # print(hyp_x)
-        # import random
-        # best_map = 0 
-        # best_lr = 0
+        print(hyp_x)
+        import random
+        best_map = 0 
+        best_momentum = 0
+        acak_lama = 0.0
+        acak_baru = 1
+        momentum_list = []
+        iter = [1,2,3,4,5,6,7,8,9,10]
+
+        for i in iter:
+            acak_baru = random.randint(1,100)/100
+            momentum_list.append(acak_baru)
+
+        hasil = []
+        hyp = hyp_x
+        # iou_lama = 0
+        momentum_baru = 0
         # acak_lama = 0.0
         # acak_baru = 1
-        # lr_list = []
-        # iter = [1,2,3,4,5,6,7,8,9,10]
+        print("=========================")
+        print(momentum_list)
+        print("=========================")
+        nmr = 0 
+        for i in momentum_list:
+            nmr = nmr +1
+            hasil_sementara = []
 
-        # for i in iter:
-        #     acak_baru = random.randint(1,100)/100
-        #     lr_list.append(acak_baru)
+            # acak_baru = random.randint(1,100)/100
+            # print("=========================")
+            # print(acak_baru)
+            # print("=========================")
+            momentum_baru = 0.1*i + 0.9
+            # while acak_baru == acak_lama:
+            #     iou_baru = 0.5*acak_baru
+            # else:
+            #     pass
 
-        # hasil = []
-        # hyp = hyp_x
-        # # iou_lama = 0
-        # lr_baru = 0
-        # # acak_lama = 0.0
-        # # acak_baru = 1
-        # print("=========================")
-        # print(lr_list)
-        # print("=========================")
-        # nmr = 0 
-        # for i in lr_list:
-        #     nmr = nmr +1
-        #     hasil_sementara = []
+            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+            print(momentum_baru)
+            map_now = train(momentum_baru)
 
-        #     # acak_baru = random.randint(1,100)/100
-        #     # print("=========================")
-        #     # print(acak_baru)
-        #     # print("=========================")
-        #     lr_baru = 0.001*i
-        #     # while acak_baru == acak_lama:
-        #     #     iou_baru = 0.5*acak_baru
-        #     # else:
-        #     #     pass
-
-        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-        #     print(lr_baru)
-        #     map_now = train(lr_baru)
-
-        #     if best_map < map_now:
-        #         best_map = map_now
-        #         best_lr = lr_baru
+            if best_map < map_now:
+                best_map = map_now
+                best_momentum = momentum_baru
             
-        #     hasil_sementara = [nmr,lr_baru,map_now]
-        #     # acak_lama = acak_baru
-        #     print("=========================")
-        #     print("Iterasi ke : "+str(nmr))
-        #     print("=========================")
-        #     print("=========================")
-        #     print("Map Terbaik :")
-        #     print(best_map)
-        #     print("LR Terbaik : ")
-        #     print(best_lr)
-        #     hasil.append(hasil_sementara)
+            hasil_sementara = [nmr,momentum_baru,map_now]
+            # acak_lama = acak_baru
+            print("=========================")
+            print("Iterasi ke : "+str(nmr))
+            print("=========================")
+            print("=========================")
+            print("Map Terbaik :")
+            print(best_map)
+            print("LR Terbaik : ")
+            print(best_momentum)
+            hasil.append(hasil_sementara)
 
-        # print(hasil)
+        print(hasil)
 
-        # Bayesian OPT
-        hyp = hyp_x
-        from bayes_opt import BayesianOptimization
+        # # Bayesian OPT
+        # hyp = hyp_x
+        # from bayes_opt import BayesianOptimization
 
-        # Parameter Space
-        pbounds = {'x':(0.9 , 1)}
+        # # Parameter Space
+        # pbounds = {'x':(0.9 , 1)}
 
         
 
-        optimizer = BayesianOptimization(
-            f=train,
-            pbounds = pbounds,
-            verbose = 2,
-            random_state=1
-        )
+        # optimizer = BayesianOptimization(
+        #     f=train,
+        #     pbounds = pbounds,
+        #     verbose = 2,
+        #     random_state=1
+        # )
 
-        optimizer.maximize(
-            init_points = 3,
-            n_iter = 7
-        )
+        # optimizer.maximize(
+        #     init_points = 3,
+        #     n_iter = 7
+        # )
         
-        print(optimizer.max)
+        # print(optimizer.max)
 
-        for i, res in enumerate(optimizer.res):
-            print("Iteration {}: \n\t{}".format(i, res))
+        # for i, res in enumerate(optimizer.res):
+        #     print("Iteration {}: \n\t{}".format(i, res))
 
 
 
