@@ -473,107 +473,107 @@ if __name__ == '__main__':
 
         # Grid Search
 
-        # # iou_hyp = []
-        # lr_hyp = []
-        # iter = [1,2,3,4,5,6,7,8,9,10,11]
-        # for i in iter:
-        #     # iounya = (i/13) * 0.001
-        #     # iou_hyp.append(iounya)
-        #     lrnya = (i/13) * 0.001
-        #     lr_hyp.append(lrnya)
-
-        # # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        # best_map = 0
-        # # best_iou = 0
-        # best_lr = 0
-        # hasil = []
-        # no = 1
-        # for i in lr_hyp:
-            
-        #     hyp = hyp_x
-        #     # hyp["iou_t"] = i
-        #     # print("Parameternya : ")
-        #     # print(hyp)
-        #     map_now = train(i)
-        #     if best_map < map_now:
-        #         best_map = map_now
-        #         best_lr = i
-        #     hasil_sementara = [no,i,map_now]
-        #     no= no +1
-        #     print("=========================")
-        #     print("Iterasi ke : "+str(no))
-        #     print("=========================")
-        #     print("=========================")
-        #     print("Map Terbaik :")
-        #     print(best_map)
-        #     print("IoU Terbaik : ")
-        #     # print(best_iou)
-        #     print(best_lr)
-    
-        #     hasil.append(hasil_sementara)
-
-        # print(hasil)
-
-        # Random Search
-
-        print(hyp_x)
-        import random
-        best_map = 0 
-        best_momentum = 0
-        acak_lama = 0.0
-        acak_baru = 1
-        momentum_list = []
-        iter = [1,2,3,4,5,6,7,8,9,10]
-
+        # iou_hyp = []
+        momentum_hyp = []
+        iter = [0,1,2,3,4,5,6,7,8,9,10]
         for i in iter:
-            acak_baru = random.randint(1,100)/100
-            momentum_list.append(acak_baru)
+            # iounya = (i/13) * 0.001
+            # iou_hyp.append(iounya)
+            momentumnya = (i/10) * 0.1 + 0.9
+            momentum_hyp.append(momwntunya)
 
+        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        best_map = 0
+        # best_iou = 0
+        best_momentum = 0
         hasil = []
-        hyp = hyp_x
-        # iou_lama = 0
-        momentum_baru = 0
-        # acak_lama = 0.0
-        # acak_baru = 1
-        print("=========================")
-        print(momentum_list)
-        print("=========================")
-        nmr = 0 
-        for i in momentum_list:
-            nmr = nmr +1
-            hasil_sementara = []
-
-            # acak_baru = random.randint(1,100)/100
-            # print("=========================")
-            # print(acak_baru)
-            # print("=========================")
-            momentum_baru = 0.1*i + 0.9
-            # while acak_baru == acak_lama:
-            #     iou_baru = 0.5*acak_baru
-            # else:
-            #     pass
-
-            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-            print(momentum_baru)
-            map_now = train(momentum_baru)
-
+        no = 1
+        for i in momentum_hyp:
+            
+            hyp = hyp_x
+            # hyp["iou_t"] = i
+            # print("Parameternya : ")
+            # print(hyp)
+            map_now = train(i)
             if best_map < map_now:
                 best_map = map_now
-                best_momentum = momentum_baru
-            
-            hasil_sementara = [nmr,momentum_baru,map_now]
-            # acak_lama = acak_baru
+                best_momentum = i
+            hasil_sementara = [no,i,map_now]
+            no= no +1
             print("=========================")
-            print("Iterasi ke : "+str(nmr))
+            print("Iterasi ke : "+str(no))
             print("=========================")
             print("=========================")
             print("Map Terbaik :")
             print(best_map)
-            print("LR Terbaik : ")
+            print("Momentum Terbaik : ")
+            # print(best_iou)
             print(best_momentum)
+    
             hasil.append(hasil_sementara)
 
         print(hasil)
+
+        # Random Search
+
+        # print(hyp_x)
+        # import random
+        # best_map = 0 
+        # best_momentum = 0
+        # acak_lama = 0.0
+        # acak_baru = 1
+        # momentum_list = []
+        # iter = [1,2,3,4,5,6,7,8,9,10]
+
+        # for i in iter:
+        #     acak_baru = random.randint(1,100)/100
+        #     momentum_list.append(acak_baru)
+
+        # hasil = []
+        # hyp = hyp_x
+        # # iou_lama = 0
+        # momentum_baru = 0
+        # # acak_lama = 0.0
+        # # acak_baru = 1
+        # print("=========================")
+        # print(momentum_list)
+        # print("=========================")
+        # nmr = 0 
+        # for i in momentum_list:
+        #     nmr = nmr +1
+        #     hasil_sementara = []
+
+        #     # acak_baru = random.randint(1,100)/100
+        #     # print("=========================")
+        #     # print(acak_baru)
+        #     # print("=========================")
+        #     momentum_baru = 0.1*i + 0.9
+        #     # while acak_baru == acak_lama:
+        #     #     iou_baru = 0.5*acak_baru
+        #     # else:
+        #     #     pass
+
+        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+        #     print(momentum_baru)
+        #     map_now = train(momentum_baru)
+
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_momentum = momentum_baru
+            
+        #     hasil_sementara = [nmr,momentum_baru,map_now]
+        #     # acak_lama = acak_baru
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(nmr))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("LR Terbaik : ")
+        #     print(best_momentum)
+        #     hasil.append(hasil_sementara)
+
+        # print(hasil)
 
         # # Bayesian OPT
         # hyp = hyp_x
