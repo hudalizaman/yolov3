@@ -37,7 +37,7 @@ results_file = 'results.txt'
 
 def train(x):
 
-    hyp["momentum"] = x
+    hyp["lr0"] = x
     print("Parameternya : ")
     print(hyp)
     # print(hyp)
@@ -398,9 +398,9 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'obj': 64.3,  # obj loss gain (*=img_size/320 if img_size != 320)
        'obj_pw': 1.0,  # obj BCELoss positive_weight
        'iou_t': 0.225,  # iou training threshold
-       'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+    #    'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
-    #    'momentum': 0.937,  # SGD momentum
+       'momentum': 0.937,  # SGD momentum
        'weight_decay': 0.000484,  # optimizer weight decay
        'fl_gamma': 0.0,  # focal loss gamma (efficientDet default is gamma=1.5)
        'hsv_h': 0.0138,  # image HSV-Hue augmentation (fraction)
@@ -474,45 +474,45 @@ if __name__ == '__main__':
         # Grid Search
 
         # iou_hyp = []
-        momentum_hyp = []
-        iter = [0,1,2,3,4,5,6,7,8,9,10]
-        for i in iter:
-            # iounya = (i/13) * 0.001
-            # iou_hyp.append(iounya)
-            momentumnya = (i/10) * 0.1 + 0.9
-            momentum_hyp.append(momentumnya )
+        # momentum_hyp = []
+        # iter = [0,1,2,3,4,5,6,7,8,9,10]
+        # for i in iter:
+        #     # iounya = (i/13) * 0.001
+        #     # iou_hyp.append(iounya)
+        #     momentumnya = (i/10) * 0.1 + 0.9
+        #     momentum_hyp.append(momentumnya )
 
-        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        best_map = 0
-        # best_iou = 0
-        best_momentum = 0
-        hasil = []
-        no = 1
-        for i in momentum_hyp:
+        # # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        # best_map = 0
+        # # best_iou = 0
+        # best_momentum = 0
+        # hasil = []
+        # no = 1
+        # for i in momentum_hyp:
             
-            hyp = hyp_x
-            # hyp["iou_t"] = i
-            # print("Parameternya : ")
-            # print(hyp)
-            map_now = train(i)
-            if best_map < map_now:
-                best_map = map_now
-                best_momentum = i
-            hasil_sementara = [no,i,map_now]
-            no= no +1
-            print("=========================")
-            print("Iterasi ke : "+str(no))
-            print("=========================")
-            print("=========================")
-            print("Map Terbaik :")
-            print(best_map)
-            print("Momentum Terbaik : ")
-            # print(best_iou)
-            print(best_momentum)
+        #     hyp = hyp_x
+        #     # hyp["iou_t"] = i
+        #     # print("Parameternya : ")
+        #     # print(hyp)
+        #     map_now = train(i)
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_momentum = i
+        #     hasil_sementara = [no,i,map_now]
+        #     no= no +1
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(no))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("Momentum Terbaik : ")
+        #     # print(best_iou)
+        #     print(best_momentum)
     
-            hasil.append(hasil_sementara)
+        #     hasil.append(hasil_sementara)
 
-        print(hasil)
+        # print(hasil)
 
         # Random Search
 
@@ -575,31 +575,31 @@ if __name__ == '__main__':
 
         # print(hasil)
 
-        # # Bayesian OPT
-        # hyp = hyp_x
-        # from bayes_opt import BayesianOptimization
+        # Bayesian OPT
+        hyp = hyp_x
+        from bayes_opt import BayesianOptimization
 
-        # # Parameter Space
-        # pbounds = {'x':(0.9 , 1)}
+        # Parameter Space
+        pbounds = {'x':(0.0001 , 0.001)}
 
         
 
-        # optimizer = BayesianOptimization(
-        #     f=train,
-        #     pbounds = pbounds,
-        #     verbose = 2,
-        #     random_state=1
-        # )
+        optimizer = BayesianOptimization(
+            f=train,
+            pbounds = pbounds,
+            verbose = 2,
+            random_state=1
+        )
 
-        # optimizer.maximize(
-        #     init_points = 3,
-        #     n_iter = 7
-        # )
+        optimizer.maximize(
+            init_points = 3,
+            n_iter = 7
+        )
         
-        # print(optimizer.max)
+        print(optimizer.max)
 
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
 
 
