@@ -472,7 +472,7 @@ if __name__ == '__main__':
             pass
 
         # Grid Search
-
+        from tabulate import tabulate
         iou_hyp = []
         momentum_hyp = []
         jumlah_epochs = opt.epochs
@@ -522,7 +522,7 @@ if __name__ == '__main__':
         print("Hasil 150 Epochs adalah :")
         print(last_maps)
         print("Hasil Latih")
-        from tabulate import tabulate
+        
         print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
 
         # Random Search
