@@ -44,7 +44,7 @@ def train(x,y):
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
-    epochs = y  # 500200 batches at bs 64, 117263 images = 273 epochs
+    epochs = int(y)  # 500200 batches at bs 64, 117263 images = 273 epochs
     batch_size = opt.batch_size
     accumulate = opt.accumulate  # effective bs = batch_size * accumulate = 16 * 4 = 64
     weights = opt.weights  # initial training weights
