@@ -35,7 +35,7 @@ results_file = 'results.txt'
 
 
 
-def train(x,y):
+def train(x,y=70):
 
     hyp["iou_t"] = x
     print("Parameternya : ")
@@ -527,100 +527,107 @@ if __name__ == '__main__':
 
         # Random Search
 
-        from tabulate import tabulate
-        jumlah_epochs = opt.epochs
-        print(hyp_x)
-        import random
-        best_map = 0 
-        best_iou = 0
+        # from tabulate import tabulate
+        # jumlah_epochs = opt.epochs
+        # print(hyp_x)
+        # import random
+        # best_map = 0 
+        # best_iou = 0
         
-        acak_baru = 1
-        iou_list = []
-        iter = [1,2,3,4,5,6,7,8,9,10]
-
-        for i in iter:
-            acak_baru = random.randint(1,100)/100 
-            iou_list.append(acak_baru)
-
-        hasil = []
-        hyp = hyp_x
-        # iou_lama = 0
-        iou_baru = 0
-        # acak_lama = 0.0
         # acak_baru = 1
-        print("=========================")
-        print(iou_list)
-        print("=========================")
-        nmr = 0 
-        for i in iou_list:
-            nmr = nmr +1
-            hasil_sementara = []
+        # iou_list = []
+        # iter = [1,2,3,4,5,6,7,8,9,10]
 
-            # acak_baru = random.randint(1,100)/100
-            # print("=========================")
-            # print(acak_baru)
-            # print("=========================")
-            iou_baru = 0.5 * i
-            # while acak_baru == acak_lama:
-            #     iou_baru = 0.5*acak_baru
-            # else:
-            #     pass
+        # for i in iter:
+        #     acak_baru = random.randint(1,100)/100 
+        #     iou_list.append(acak_baru)
 
-            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-            print(iou_baru)
-            map_now = train(iou_baru, jumlah_epochs)
+        # hasil = []
+        # hyp = hyp_x
+        # # iou_lama = 0
+        # iou_baru = 0
+        # # acak_lama = 0.0
+        # # acak_baru = 1
+        # print("=========================")
+        # print(iou_list)
+        # print("=========================")
+        # nmr = 0 
+        # for i in iou_list:
+        #     nmr = nmr +1
+        #     hasil_sementara = []
 
-            if best_map < map_now:
-                best_map = map_now
-                best_iou = iou_baru
+        #     # acak_baru = random.randint(1,100)/100
+        #     # print("=========================")
+        #     # print(acak_baru)
+        #     # print("=========================")
+        #     iou_baru = 0.5 * i
+        #     # while acak_baru == acak_lama:
+        #     #     iou_baru = 0.5*acak_baru
+        #     # else:
+        #     #     pass
+
+        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+        #     print(iou_baru)
+        #     map_now = train(iou_baru, jumlah_epochs)
+
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_iou = iou_baru
             
-            hasil_sementara = [nmr,iou_baru,map_now]
-            # acak_lama = acak_baru
-            print("=========================")
-            print("Iterasi ke : "+str(nmr))
-            print("=========================")
-            print("=========================")
-            print("Map Terbaik :")
-            print(best_map)
-            print("IoU Terbaik : ")
-            print(best_iou)
-            hasil.append(hasil_sementara)
+        #     hasil_sementara = [nmr,iou_baru,map_now]
+        #     # acak_lama = acak_baru
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(nmr))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("IoU Terbaik : ")
+        #     print(best_iou)
+        #     hasil.append(hasil_sementara)
 
-        print(hasil)
+        # print(hasil)
 
+        # last_maps = train(best_iou, 150)
+        # print("Hasil 150 Epochs adalah :")
+        # print(last_maps)
+        # print("Hasil Latih")
+        
+        # print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
+
+
+        # Bayesian OPT
+        hyp = hyp_x
+        from bayes_opt import BayesianOptimization
+
+        # Parameter Space
+        pbounds = {'x':(0 , 0.5), 'y':(70,70)}
+
+        
+
+        optimizer = BayesianOptimization(
+            f=train,
+            pbounds = pbounds,
+            verbose = 2,
+            random_state=1
+        )
+
+        optimizer.maximize(
+            init_points = 3,
+            n_iter = 7
+        )
+        
+        print(optimizer.max)
+
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
+
+        best_iou = optimizer.max["params"]["x"]
+    
         last_maps = train(best_iou, 150)
         print("Hasil 150 Epochs adalah :")
         print(last_maps)
         print("Hasil Latih")
-        
-        print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
-        # Bayesian OPT
-        # hyp = hyp_x
-        # from bayes_opt import BayesianOptimization
-
-        # # Parameter Space
-        # pbounds = {'x':(0 , 0.5)}
-
-        
-
-        # optimizer = BayesianOptimization(
-        #     f=train,
-        #     pbounds = pbounds,
-        #     verbose = 2,
-        #     random_state=1
-        # )
-
-        # optimizer.maximize(
-        #     init_points = 3,
-        #     n_iter = 7
-        # )
-        
-        # print(optimizer.max)
-
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
-
-
 
 
 
