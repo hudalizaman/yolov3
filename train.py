@@ -35,7 +35,7 @@ results_file = 'results.txt'
 
 
 
-def train(x,y=70):
+def train(x,y):
 
     hyp["iou_t"] = x
     print("Parameternya : ")
@@ -623,7 +623,7 @@ if __name__ == '__main__':
             print("Iteration {}: \n\t{}".format(i, res))
 
         best_iou = optimizer.max["params"]["x"]
-    
+
         last_maps = train(best_iou, 150)
         print("Hasil 150 Epochs adalah :")
         print(last_maps)
