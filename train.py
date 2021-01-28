@@ -37,7 +37,7 @@ results_file = 'results.txt'
 
 def train(x,y):
 
-    hyp["iou_t"] = x
+    hyp["lr0"] = x
     print("Parameternya : ")
     print(hyp)
     # print(hyp)
@@ -398,7 +398,7 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'obj': 64.3,  # obj loss gain (*=img_size/320 if img_size != 320)
        'obj_pw': 1.0,  # obj BCELoss positive_weight
        'iou_t': 0.225,  # iou training threshold
-       'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+    #    'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
        'momentum': 0.937,  # SGD momentum
        'weight_decay': 0.000484,  # optimizer weight decay
