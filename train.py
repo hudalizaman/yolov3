@@ -560,7 +560,7 @@ if __name__ == '__main__':
             # print("=========================")
             # print(acak_baru)
             # print("=========================")
-            lr_baru = 0.0.0001 * i
+            lr_baru = 0.0001 * i
             # while acak_baru == acak_lama:
             #     iou_baru = 0.5*acak_baru
             # else:
