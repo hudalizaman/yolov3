@@ -614,7 +614,8 @@ if __name__ == '__main__':
 
         optimizer.maximize(
             init_points = 3,
-            n_iter = 7
+            n_iter = 10
+
         )
         
         print(optimizer.max)
@@ -628,6 +629,8 @@ if __name__ == '__main__':
         print("Hasil 150 Epochs adalah :")
         print(last_maps)
         print("Hasil Latih")    
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
 
 
