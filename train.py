@@ -480,7 +480,7 @@ if __name__ == '__main__':
         for i in iter:
             # iounya = (i/13) * 0.001
             # iou_hyp.append(iounya)
-            momentumnya = (i/10) + 0.9
+            momentumnya = (i/100) + 0.9
             momentum_hyp.append(momentumnya )
 
         # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
