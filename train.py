@@ -472,52 +472,122 @@ if __name__ == '__main__':
             pass
 
         # # Grid Search
-        from tabulate import tabulate
-        momentum_hyp = []
+        # from tabulate import tabulate
         # momentum_hyp = []
-        jumlah_epochs = opt.epochs
-        iter = [0,1,2,3,4,5,6,7,8,9]
-        for i in iter:
-            # iounya = (i/13) * 0.001
-            # iou_hyp.append(iounya)
-            momentumnya = (i/100) + 0.9
-            momentum_hyp.append(momentumnya )
+        # # momentum_hyp = []
+        # jumlah_epochs = opt.epochs
+        # iter = [0,1,2,3,4,5,6,7,8,9]
+        # for i in iter:
+        #     # iounya = (i/13) * 0.001
+        #     # iou_hyp.append(iounya)
+        #     momentumnya = (i/100) + 0.9
+        #     momentum_hyp.append(momentumnya )
 
-        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        best_map = 0
-        # best_iou = 0
-        best_momentum = 0
-        hasil = []
-        no = 1
-        print(momentum_hyp)
-        for i in momentum_hyp:
+        # # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        # best_map = 0
+        # # best_iou = 0
+        # best_momentum = 0
+        # hasil = []
+        # no = 1
+        # print(momentum_hyp)
+        # for i in momentum_hyp:
             
-            hyp = hyp_x
-            # hyp["iou_t"] = i
-            # print("Parameternya : ")
-            # print(hyp)
-            map_now = train(i,jumlah_epochs)
+        #     hyp = hyp_x
+        #     # hyp["iou_t"] = i
+        #     # print("Parameternya : ")
+        #     # print(hyp)
+        #     map_now = train(i,jumlah_epochs)
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_momentum = i
+        #     hasil_sementara = [no,i,map_now]
+        #     no= no +1
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(no))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("Hyperparameter Terbaik : ")
+        #     # print(best_iou)
+        #     print(best_momentum)
+    
+        #     hasil.append(hasil_sementara)
+
+
+        # print(hasil)
+
+        # # jumlah_epochs = 150
+
+        # last_maps = train(best_momentum, 150)
+        # print("Hasil 150 Epochs adalah :")
+        # print(last_maps)
+        # print("Hasil Latih")
+        
+        # print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
+
+        # Random Search
+
+        from tabulate import tabulate
+        jumlah_epochs = opt.epochs
+        print(hyp_x)
+        import random
+        best_map = 0 
+        best_momentum = 0
+        
+        acak_baru = 1
+        momentum_list = []
+        iter = [1,2,3,4,5,6,7,8,9,10]
+
+        for i in iter:
+            acak_baru = random.randint(1,100)/100 
+            momentum_list.append(acak_baru)
+
+        hasil = []
+        hyp = hyp_x
+        # iou_lama = 0
+        momentum_baru = 0
+        # acak_lama = 0.0
+        # acak_baru = 1
+        print("=========================")
+        print(momentum_list)
+        print("=========================")
+        nmr = 0 
+        for i in momentum_list:
+            nmr = nmr +1
+            hasil_sementara = []
+
+            # acak_baru = random.randint(1,100)/100
+            # print("=========================")
+            # print(acak_baru)
+            # print("=========================")
+            momentum_baru = i + 0.9
+            # while acak_baru == acak_lama:
+            #     iou_baru = 0.5*acak_baru
+            # else:
+            #     pass
+
+            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+            print(momentum_baru)
+            map_now = train(momentum_baru, jumlah_epochs)
+
             if best_map < map_now:
                 best_map = map_now
-                best_momentum = i
-            hasil_sementara = [no,i,map_now]
-            no= no +1
+                best_momentum = momentum_baru
+            
+            hasil_sementara = [nmr, momentum_baru,map_now]
+            # acak_lama = acak_baru
             print("=========================")
-            print("Iterasi ke : "+str(no))
+            print("Iterasi ke : "+str(nmr))
             print("=========================")
             print("=========================")
             print("Map Terbaik :")
             print(best_map)
-            print("Hyperparameter Terbaik : ")
-            # print(best_iou)
+            print("IoU Terbaik : ")
             print(best_momentum)
-    
             hasil.append(hasil_sementara)
 
-
         print(hasil)
-
-        # jumlah_epochs = 150
 
         last_maps = train(best_momentum, 150)
         print("Hasil 150 Epochs adalah :")
@@ -525,76 +595,6 @@ if __name__ == '__main__':
         print("Hasil Latih")
         
         print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
-
-        # Random Search
-
-        # from tabulate import tabulate
-        # jumlah_epochs = opt.epochs
-        # print(hyp_x)
-        # import random
-        # best_map = 0 
-        # best_lr = 0
-        
-        # acak_baru = 1
-        # lr_list = []
-        # iter = [1,2,3,4,5,6,7,8,9,10]
-
-        # for i in iter:
-        #     acak_baru = random.randint(1,100)/100 
-        #     lr_list.append(acak_baru)
-
-        # hasil = []
-        # hyp = hyp_x
-        # # iou_lama = 0
-        # lr_baru = 0
-        # # acak_lama = 0.0
-        # # acak_baru = 1
-        # print("=========================")
-        # print(lr_list)
-        # print("=========================")
-        # nmr = 0 
-        # for i in lr_list:
-        #     nmr = nmr +1
-        #     hasil_sementara = []
-
-        #     # acak_baru = random.randint(1,100)/100
-        #     # print("=========================")
-        #     # print(acak_baru)
-        #     # print("=========================")
-        #     lr_baru = 0.0001 * i
-        #     # while acak_baru == acak_lama:
-        #     #     iou_baru = 0.5*acak_baru
-        #     # else:
-        #     #     pass
-
-        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-        #     print(lr_baru)
-        #     map_now = train(lr_baru, jumlah_epochs)
-
-        #     if best_map < map_now:
-        #         best_map = map_now
-        #         best_lr = lr_baru
-            
-        #     hasil_sementara = [nmr, lr_baru,map_now]
-        #     # acak_lama = acak_baru
-        #     print("=========================")
-        #     print("Iterasi ke : "+str(nmr))
-        #     print("=========================")
-        #     print("=========================")
-        #     print("Map Terbaik :")
-        #     print(best_map)
-        #     print("IoU Terbaik : ")
-        #     print(best_lr)
-        #     hasil.append(hasil_sementara)
-
-        # print(hasil)
-
-        # last_maps = train(best_lr, 150)
-        # print("Hasil 150 Epochs adalah :")
-        # print(last_maps)
-        # print("Hasil Latih")
-        
-        # print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
 
 
         # Bayesian OPT
