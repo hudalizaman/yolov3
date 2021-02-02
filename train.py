@@ -540,7 +540,7 @@ if __name__ == '__main__':
         iter = [1,2,3,4,5,6,7,8,9,10]
 
         for i in iter:
-            acak_baru = random.randint(1,100)/100 
+            acak_baru = random.randint(1,100)/1000
             momentum_list.append(acak_baru)
 
         hasil = []
