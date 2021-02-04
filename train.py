@@ -528,110 +528,110 @@ if __name__ == '__main__':
 
         # Random Search
 
-        # from tabulate import tabulate
-        # jumlah_epochs = opt.epochs
-        # print(hyp_x)
-        # import random
-        # best_map = 0 
-        # best_momentum = 0
+        from tabulate import tabulate
+        jumlah_epochs = opt.epochs
+        print(hyp_x)
+        import random
+        best_map = 0 
+        best_lr = 0
         
+        acak_baru = 1
+        lr_list = []
+        iter = [1,2,3,4,5,6,7,8,9,10]
+
+        for i in iter:
+            acak_baru = random.randint(1,100)/100
+            lr_list.append(acak_baru)
+
+        hasil = []
+        hyp = hyp_x
+        # iou_lama = 0
+        lr_baru = 0
+        # acak_lama = 0.0
         # acak_baru = 1
-        # momentum_list = []
-        # iter = [1,2,3,4,5,6,7,8,9,10]
+        print("=========================")
+        print(lr_list)
+        print("=========================")
+        nmr = 0 
+        for i in lr_list:
+            nmr = nmr +1
+            hasil_sementara = []
 
-        # for i in iter:
-        #     acak_baru = random.randint(1,100)/1000
-        #     momentum_list.append(acak_baru)
+            # acak_baru = random.randint(1,100)/100
+            # print("=========================")
+            # print(acak_baru)
+            # print("=========================")
+            lr_baru = i * 0.001
+            # while acak_baru == acak_lama:
+            #     iou_baru = 0.5*acak_baru
+            # else:
+            #     pass
 
-        # hasil = []
-        # hyp = hyp_x
-        # # iou_lama = 0
-        # momentum_baru = 0
-        # # acak_lama = 0.0
-        # # acak_baru = 1
-        # print("=========================")
-        # print(momentum_list)
-        # print("=========================")
-        # nmr = 0 
-        # for i in momentum_list:
-        #     nmr = nmr +1
-        #     hasil_sementara = []
+            # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
+            print(lr_baru)
+            map_now = train(lr_baru, jumlah_epochs)
 
-        #     # acak_baru = random.randint(1,100)/100
-        #     # print("=========================")
-        #     # print(acak_baru)
-        #     # print("=========================")
-        #     momentum_baru = i + 0.9
-        #     # while acak_baru == acak_lama:
-        #     #     iou_baru = 0.5*acak_baru
-        #     # else:
-        #     #     pass
-
-        #     # map_now = iou_baru ** 3 -4 * iou_baru **2 + 5 * iou_baru +3
-        #     print(momentum_baru)
-        #     map_now = train(momentum_baru, jumlah_epochs)
-
-        #     if best_map < map_now:
-        #         best_map = map_now
-        #         best_momentum = momentum_baru
+            if best_map < map_now:
+                best_map = map_now
+                best_lr = lr_baru
             
-        #     hasil_sementara = [nmr, momentum_baru,map_now]
-        #     # acak_lama = acak_baru
-        #     print("=========================")
-        #     print("Iterasi ke : "+str(nmr))
-        #     print("=========================")
-        #     print("=========================")
-        #     print("Map Terbaik :")
-        #     print(best_map)
-        #     print("IoU Terbaik : ")
-        #     print(best_momentum)
-        #     hasil.append(hasil_sementara)
+            hasil_sementara = [nmr, lr_baru,map_now]
+            # acak_lama = acak_baru
+            print("=========================")
+            print("Iterasi ke : "+str(nmr))
+            print("=========================")
+            print("=========================")
+            print("Map Terbaik :")
+            print(best_map)
+            print("IoU Terbaik : ")
+            print(best_lr)
+            hasil.append(hasil_sementara)
 
-        # print(hasil)
+        print(hasil)
 
-        # last_maps = train(best_momentum, 150)
-        # print("Hasil 150 Epochs adalah :")
-        # print(last_maps)
-        # print("Hasil Latih")
+        last_maps = train(best_lr, 150)
+        print("Hasil 150 Epochs adalah :")
+        print(last_maps)
+        print("Hasil Latih")
         
-        # print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
+        print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
 
 
         # Bayesian OPT
-        hyp = hyp_x
-        from bayes_opt import BayesianOptimization
+        # hyp = hyp_x
+        # from bayes_opt import BayesianOptimization
 
-        # Parameter Space
-        pbounds  = {'x':(0.001 , 0.01), 'y':(70,70)}
+        # # Parameter Space
+        # pbounds  = {'x':(0.001 , 0.01), 'y':(70,70)}
 
         
 
-        optimizer = BayesianOptimization(
-            f=train,
-            pbounds = pbounds,
-            verbose = 2,
-            random_state=1
-        )
+        # optimizer = BayesianOptimization(
+        #     f=train,
+        #     pbounds = pbounds,
+        #     verbose = 2,
+        #     random_state=1
+        # )
 
-        optimizer.maximize(
-            init_points = 3,
-            n_iter = 10
+        # optimizer.maximize(
+        #     init_points = 3,
+        #     n_iter = 10
 
-        )
+        # )
         
-        print(optimizer.max)
+        # print(optimizer.max)
 
-        for i, res in enumerate(optimizer.res):
-            print("Iteration {}: \n\t{}".format(i, res))
+        # for i, res in enumerate(optimizer.res):
+        #     print("Iteration {}: \n\t{}".format(i, res))
 
-        best_iou = optimizer.max["params"]["x"]
+        # best_iou = optimizer.max["params"]["x"]
 
-        last_maps = train(best_iou, 150)
-        print("Hasil 150 Epochs adalah :")
-        print(last_maps)
-        print("Hasil Latih")    
-        for i, res in enumerate(optimizer.res):
-            print("Iteration {}: \n\t{}".format(i, res))
+        # last_maps = train(best_iou, 150)
+        # print("Hasil 150 Epochs adalah :")
+        # print(last_maps)
+        # print("Hasil Latih")    
+        # for i, res in enumerate(optimizer.res):
+        #     print("Iteration {}: \n\t{}".format(i, res))
 
 
 
