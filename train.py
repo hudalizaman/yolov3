@@ -37,7 +37,7 @@ results_file = 'results.txt'
 
 def train(x,y):
 
-    hyp["iou_t"] = x
+    hyp["lr0"] = x
     print("Parameternya : ")
     print(hyp)
     # print(hyp)
@@ -397,8 +397,8 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'cls_pw': 1.0,  # cls BCELoss positive_weight
        'obj': 64.3,  # obj loss gain (*=img_size/320 if img_size != 320)
        'obj_pw': 1.0,  # obj BCELoss positive_weight
-    #    'iou_t': 0.225,  # iou training threshold
-       'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+       'iou_t': 0.225,  # iou training threshold
+    #    'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
        'momentum': 0.937,  # SGD momentum
        'weight_decay': 0.000484,  # optimizer weight decay
@@ -602,7 +602,7 @@ if __name__ == '__main__':
         from bayes_opt import BayesianOptimization
 
         # Parameter Space
-        pbounds  = {'x':(0.0 , 0.5), 'y':(70,70)}
+        pbounds  = {'x':(0.001 , 0.01), 'y':(70,70)}
 
         
 
