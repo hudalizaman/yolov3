@@ -38,8 +38,8 @@ results_file = 'results.txt'
 def train():
 
     # hyp["lr0"] = x
-    print("Parameternya : ")
-    print(hyp)
+    # print("Parameternya : ")
+    # print(hyp)
     # print(hyp)
     cfg = opt.cfg
     data = opt.data
@@ -381,10 +381,10 @@ def train():
     dist.destroy_process_group() if torch.cuda.device_count() > 1 else None
     torch.cuda.empty_cache()
 
-    # print("Keluaran")
-    # print(best_fitness[0])
-    # print("=============")
-    # print(type(best_fitness[0]))
+    print("Keluaran")
+    print(best_fitness[0])
+    print("=============")
+    print(type(best_fitness[0]))
     # from random import random
 
     return best_fitness[0]
@@ -473,59 +473,59 @@ if __name__ == '__main__':
             pass
 
         # # Grid Search
-        from tabulate import tabulate
-        lr_hyp = []
-        # momentum_hyp = []
-        jumlah_epochs = opt.epochs
-        iter = [0,1,2,3,4,5,6,7,8,9]
-        for i in iter:
-            # iounya = (i/13) * 0.001
-            # iou_hyp.append(iounya)
-            lrnya = (i/1000) 
-            lr_hyp.append(lrnya )
+        # from tabulate import tabulate
+        # lr_hyp = []
+        # # momentum_hyp = []
+        # jumlah_epochs = opt.epochs
+        # iter = [0,1,2,3,4,5,6,7,8,9]
+        # for i in iter:
+        #     # iounya = (i/13) * 0.001
+        #     # iou_hyp.append(iounya)
+        #     lrnya = (i/1000) 
+        #     lr_hyp.append(lrnya )
 
-        # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
-        best_map = 0
-        # best_iou = 0
-        best_lr = 0
-        hasil = []
-        no = 1
-        print(lr_hyp)
-        for i in lr_hyp:
+        # # iou_hyp = [0.1,  0.2, 0.3,  0.4,  0.50]
+        # best_map = 0
+        # # best_iou = 0
+        # best_lr = 0
+        # hasil = []
+        # no = 1
+        # print(lr_hyp)
+        # for i in lr_hyp:
             
-            hyp = hyp_x
-            # hyp["iou_t"] = i
-            # print("Parameternya : ")
-            # print(hyp)
-            map_now = train(i,jumlah_epochs)
-            if best_map < map_now:
-                best_map = map_now
-                best_lr = i
-            hasil_sementara = [no,i,map_now]
-            no= no +1
-            print("=========================")
-            print("Iterasi ke : "+str(no))
-            print("=========================")
-            print("=========================")
-            print("Map Terbaik :")
-            print(best_map)
-            print("Hyperparameter Terbaik : ")
-            # print(best_iou)
-            print(best_lr)
+        #     hyp = hyp_x
+        #     # hyp["iou_t"] = i
+        #     # print("Parameternya : ")
+        #     # print(hyp)
+        #     map_now = train(i,jumlah_epochs)
+        #     if best_map < map_now:
+        #         best_map = map_now
+        #         best_lr = i
+        #     hasil_sementara = [no,i,map_now]
+        #     no= no +1
+        #     print("=========================")
+        #     print("Iterasi ke : "+str(no))
+        #     print("=========================")
+        #     print("=========================")
+        #     print("Map Terbaik :")
+        #     print(best_map)
+        #     print("Hyperparameter Terbaik : ")
+        #     # print(best_iou)
+        #     print(best_lr)
     
-            hasil.append(hasil_sementara)
+        #     hasil.append(hasil_sementara)
 
 
-        print(hasil)
+        # print(hasil)
 
-        # jumlah_epochs = 150
+        # # jumlah_epochs = 150
 
-        last_maps = train(best_lr, 150)
-        print("Hasil 150 Epochs adalah :")
-        print(last_maps)
-        print("Hasil Latih")
+        # last_maps = train(best_lr, 150)
+        # print("Hasil 150 Epochs adalah :")
+        # print(last_maps)
+        # print("Hasil Latih")
         
-        print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
+        # print(tabulate(hasil, headers=['Iterasi', 'Hyperparameter','mAP']))
 
         # Random Search
 
