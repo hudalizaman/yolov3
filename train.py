@@ -35,16 +35,17 @@ results_file = 'results.txt'
 
 
 
-def train():
-    hyp = hyp_x
-    # hyp["lr0"] = x
-    # print("Parameternya : ")
-    # print(hyp)
+def train(x,y):
+    # hyp = hyp_x
+    hyp["weight_decay"] = x
+    print("Parameternya : ")
+    print(hyp)
     # print(hyp)
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
-    epochs = opt.epochs 
+    epochs = int(y)
+    # opt.epochs 
     # int(y)  # 500200 batches at bs 64, 117263 images = 273 epochs
     batch_size = opt.batch_size
     accumulate = opt.accumulate  # effective bs = batch_size * accumulate = 16 * 4 = 64
@@ -402,7 +403,7 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
        'momentum': 0.937,  # SGD momentum
-       'weight_decay': 0.000484,  # optimizer weight decay
+    #    'weight_decay': 0.000484,  # optimizer weight decay
        'fl_gamma': 0.0,  # focal loss gamma (efficientDet default is gamma=1.5)
        'hsv_h': 0.0138,  # image HSV-Hue augmentation (fraction)
        'hsv_s': 0.678,  # image HSV-Saturation augmentation (fraction)
@@ -599,40 +600,40 @@ if __name__ == '__main__':
 
 
         # Bayesian OPT
-        # hyp = hyp_x
-        # from bayes_opt import BayesianOptimization
+        hyp = hyp_x
+        from bayes_opt import BayesianOptimization
 
-        # # Parameter Space
-        # pbounds  = {'x':(0.001 , 0.01), 'y':(70,70)}
+        # Parameter Space
+        pbounds  = {'x':(0.0001 , 0.001), 'y':(70,70)}
 
         
 
-        # optimizer = BayesianOptimization(
-        #     f=train,
-        #     pbounds = pbounds,
-        #     verbose = 2,
-        #     random_state=1
-        # )
+        optimizer = BayesianOptimization(
+            f=train,
+            pbounds = pbounds,
+            verbose = 2,
+            random_state=1
+        )
 
-        # optimizer.maximize(
-        #     init_points = 3,
-        #     n_iter = 10
+        optimizer.maximize(
+            init_points = 3,
+            n_iter = 10
 
-        # )
+        )
         
-        # print(optimizer.max)
+        print(optimizer.max)
 
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
-        # best_iou = optimizer.max["params"]["x"]
+        best_iou = optimizer.max["params"]["x"]
 
-        # last_maps = train(best_iou, 150)
-        # print("Hasil 150 Epochs adalah :")
-        # print(last_maps)
-        # print("Hasil Latih")    
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
+        last_maps = train(best_iou, 150)
+        print("Hasil 150 Epochs adalah :")
+        print(last_maps)
+        print("Hasil Latih")    
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
 
 
