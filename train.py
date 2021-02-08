@@ -35,16 +35,17 @@ results_file = 'results.txt'
 
 
 
-def train(x,y):
+def train():
 
-    hyp["lr0"] = x
+    # hyp["lr0"] = x
     print("Parameternya : ")
     print(hyp)
     # print(hyp)
     cfg = opt.cfg
     data = opt.data
     img_size, img_size_test = opt.img_size if len(opt.img_size) == 2 else opt.img_size * 2  # train, test sizes
-    epochs = int(y)  # 500200 batches at bs 64, 117263 images = 273 epochs
+    epochs = opt.epochs 
+    # int(y)  # 500200 batches at bs 64, 117263 images = 273 epochs
     batch_size = opt.batch_size
     accumulate = opt.accumulate  # effective bs = batch_size * accumulate = 16 * 4 = 64
     weights = opt.weights  # initial training weights
@@ -398,7 +399,7 @@ hyp_x = {'giou': 1.0,  # giou loss gain
        'obj': 64.3,  # obj loss gain (*=img_size/320 if img_size != 320)
        'obj_pw': 1.0,  # obj BCELoss positive_weight
        'iou_t': 0.225,  # iou training threshold
-    #    'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+       'lr0': 0.001,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4.,  # final LambdaLR learning rate = lr0 * (10 ** lrf)
        'momentum': 0.937,  # SGD momentum
        'weight_decay': 0.000484,  # optimizer weight decay
