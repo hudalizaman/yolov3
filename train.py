@@ -36,7 +36,7 @@ results_file = 'results.txt'
 
 
 def train():
-
+    hyp = hyp_x
     # hyp["lr0"] = x
     # print("Parameternya : ")
     # print(hyp)
