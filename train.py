@@ -604,7 +604,7 @@ if __name__ == '__main__':
         from bayes_opt import BayesianOptimization
 
         # Parameter Space
-        pbounds  = {'x':(0.0001 , 0.001), 'y':(70,70)}
+        pbounds  = {'x':(0.001 , 0.01), 'y':(70,70)}
 
         
 
