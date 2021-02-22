@@ -607,7 +607,7 @@ if __name__ == '__main__':
         from bayes_opt import BayesianOptimization
 
         # Parameter Space
-        pbounds  = {'u':(0 , 0.5), 'v':(0.001 , 0.01), 'w':(0.9 , 0.99), 'x':(0.0001 , 0.001), 'y':(70,70)}
+        pbounds  = {'u':(0.01 , 0.5), 'v':(0.001 , 0.01), 'w':(0.9 , 0.99), 'x':(0.0001 , 0.001), 'y':(70,70)}
 
         
 
@@ -629,9 +629,12 @@ if __name__ == '__main__':
         for i, res in enumerate(optimizer.res):
             print("Iteration {}: \n\t{}".format(i, res))
 
-        best_iou = optimizer.max["params"]["x"]
+        best_iou = optimizer.max["params"]["u"]
+        best_lr = optimizer.max["params"]["v"]
+        best_momentum = optimizer.max["params"]["w"]
+        best_wd = optimizer.max["params"]["x"]
 
-        last_maps = train(best_iou, 150)
+        last_maps = train(best_iou,best_lr,best_momentum,best_wd, 150)
         print("Hasil 150 Epochs adalah :")
         print(last_maps)
         print("Hasil Latih")    
