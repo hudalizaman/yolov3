@@ -620,7 +620,7 @@ if __name__ == '__main__':
 
         optimizer.maximize(
             init_points = 3,
-            n_iter = 20
+            n_iter = 15
 
         )
         
