@@ -589,10 +589,6 @@ if __name__ == '__main__':
 
 
         for i in range(10):
-            nmr = nmr + 1
-            hasil_sementara = []
-
-        for i in weight_list:
             nmr = nmr +1
             hasil_sementara = []
             print("=========================")
