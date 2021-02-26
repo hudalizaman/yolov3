@@ -607,7 +607,7 @@ if __name__ == '__main__':
                 best_momentum = momentum_list[i]
                 best_weight = weight_list[i]
             
-            hasil_sementara = [nmr, iou_list[1], lr_list[i], momentum_list[i], weight_list[i] ,map_now]
+            hasil_sementara = [nmr, iou_list[i], lr_list[i], momentum_list[i], weight_list[i] ,map_now]
             hasil.append(hasil_sementara)
 
             
