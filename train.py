@@ -608,7 +608,7 @@ if __name__ == '__main__':
                             best_momentum = momentum_hyp[no_momentum]
                             best_weight = weight_hyp[no_weight]
                         
-                        hasil_sementara = [no,iou_hyp[i],lr_hyp[j],momentum_hyp[k],weight_hyp[l],map_now]
+                        hasil_sementara = [no,iou_hyp[no_iou],lr_hyp[no_lr],momentum_hyp[no_momentum],weight_hyp[no_weight],map_now]
 
                         hasil.append(hasil_sementara)
 
