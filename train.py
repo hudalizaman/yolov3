@@ -583,25 +583,30 @@ if __name__ == '__main__':
 
         hyp = hyp_x
 
+        no_iou=0
+        no_lr=0
+        no_momentum=0
+        no_weight=0
+
         for i in iou_hyp:
             for j in lr_hyp:
                 for k in momentum_hyp:
                     for l in weight_hyp:
                         hasil_sementara = []
                         print("=========================")
-                        print(iou_hyp[i])
-                        print(lr_hyp[j])
-                        print(momentum_hyp[k])
-                        print(weight_hyp[l])
+                        print(iou_hyp[no_iou])
+                        print(lr_hyp[no_lr])
+                        print(momentum_hyp[no_momentum])
+                        print(weight_hyp[no_weight])
                         print("=========================")
                         map_now = train(i,j,k,l,jumlah_epochs)
 
                         if best_map < map_now:
                             best_map = map_now
-                            best_iou = iou_hyp[i]
-                            best_lr = lr_hyp[j]
-                            best_momentum = momentum_hyp[k]
-                            best_weight = weight_hyp[l]
+                            best_iou = iou_hyp[no_iou]
+                            best_lr = lr_hyp[no_lr]
+                            best_momentum = momentum_hyp[no_momentum]
+                            best_weight = weight_hyp[no_weight]
                         
                         hasil_sementara = [no,iou_hyp[i],lr_hyp[j],momentum_hyp[k],weight_hyp[l],map_now]
 
@@ -627,6 +632,10 @@ if __name__ == '__main__':
                         print("WEIGHT")
                         print(best_weight)
 
+                        no_weight = no_weight +1
+                    no_momentum = no_momentum+1
+                no_lr = no_lr+1
+            no_iou = no_iou + 1
 
         print(hasil)
 
