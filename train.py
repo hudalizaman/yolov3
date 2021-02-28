@@ -637,8 +637,14 @@ if __name__ == '__main__':
                         no = no + 1
                         no_weight = no_weight +1
                     no_momentum = no_momentum+1
+                    no_weight = 0
                 no_lr = no_lr+1
+                no_momentum = 0
+                no_weight = 0
             no_iou = no_iou + 1
+            no_lr = 0
+            no_momentum = 0
+            no_weight = 0
 
         print(hasil)
 
