@@ -550,18 +550,18 @@ if __name__ == '__main__':
         momentum_grid = 0
         weight_grid = 0
 
-        for i in range(3):
+        for i in range(2):
             
-            iou_grid = (((i+1) / 3) * 50)/100
+            iou_grid = (((i+1) / 2) * 50)/100
             iou_hyp.append(iou_grid)
 
-            lr_grid = (((i+1) / 3) * 1 )/100 
+            lr_grid = (((i+1) / 2) * 1 )/100 
             lr_hyp.append(lr_grid)
             
-            momentum_grid = (((i+1) / 3) * 9.9)/100 + 0.9
+            momentum_grid = (((i+1) / 2) * 9.9)/100 + 0.9
             momentum_hyp.append(momentum_grid)
 
-            weight_grid = (((i+1) / 3) * 1)/1000
+            weight_grid = (((i+1) / 2) * 1)/1000
             weight_hyp.append(weight_grid)
 
         
