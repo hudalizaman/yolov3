@@ -631,7 +631,7 @@ if __name__ == '__main__':
                         print("=========================")
                         print("WEIGHT")
                         print(best_weight)
-
+                        no = no + 1
                         no_weight = no_weight +1
                     no_momentum = no_momentum+1
                 no_lr = no_lr+1
