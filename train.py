@@ -601,7 +601,8 @@ if __name__ == '__main__':
                         print(momentum_hyp[no_momentum])
                         print(weight_hyp[no_weight])
                         print("=========================")
-                        map_now = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
+                        map_now = train(i,j,k,l,jumlah_epochs)
+                        # i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
                         # train(i,j,k,l,jumlah_epochs)
 
                         if best_map < map_now:
