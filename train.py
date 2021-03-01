@@ -671,7 +671,7 @@ if __name__ == '__main__':
                 best_momentum = i[3]
                 best_weight = i[4]
 
-            hasil_sementara = [i[0],i[1],i[2],i[3],i[4],i[5]]
+            hasil_sementara = [i[0],i[1],i[2],i[3],i[4],map_now
             hasil.append(hasil_sementara)
 
             print("=========================")
