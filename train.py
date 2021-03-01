@@ -639,7 +639,7 @@ if __name__ == '__main__':
                         # print("=========================")
                         # print("WEIGHT")
                         # print(best_weight)
-                        # no = no + 1
+                        no = no + 1
                         no_weight = no_weight +1
                     no_momentum = no_momentum+1
                     no_weight = 0
@@ -653,20 +653,62 @@ if __name__ == '__main__':
 
         print(hyperx)
 
-        # jumlah_epochs = 150
+        for i in hyperx:
+            hasil_sementara = []
+            print("=========================")
+            print(i[1])
+            print(i[2])
+            print(i[3])
+            print(i[4])
+            print("=========================")
+            map_now = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
+            # train(i[1],i[2],i[3],i[4],i[5])
 
-        # last_maps = train(best_iou, best_lr, best_momentum, best_weight, 150)
-        # # last_maps = best_iou**5 + best_lr**4 -best_momentum**3-best_weight**6+512*best_iou*best_lr-665*best_momentum*best_weight+jumlah_epochs
-        # print("Hasil 150 Epochs adalah :")
-        # print(last_maps)
-        # print("Hasil Latih")
-        
-        # end = time.time()
+            if best_map < map_now:
+                best_map = map_now
+                best_iou = i[1]
+                best_lr = i[2]
+                best_momentum = i[3]
+                best_weight = i[4]
 
-        # t += end - start
+            hasil_sementara = [i[0],i[1],i[2],i[3],i[4],i[5]]
+            hasil.append(hasil_sementara)
+
+            print("=========================")
+            print("Iterasi ke : "+str(i[0]))
+            print("=========================")
+            print("=========================")
+            print("Map Terbaik :")
+            print(best_map)
+            print("HP Terbaik : ")
+            print("=========================")
+            print("IOU")
+            print(best_iou)
+            print("=========================")
+            print("LR")
+            print(best_lr)
+            print("=========================")
+            print("MOMENTUM")
+            print(best_momentum)
+            print("=========================")
+            print("WEIGHT")
+            print(best_weight)
+
+        jumlah_epochs = 150
+
+        last_maps = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
+        # train(best_iou, best_lr, best_momentum, best_weight, 150)
+        # last_maps = best_iou**5 + best_lr**4 -best_momentum**3-best_weight**6+512*best_iou*best_lr-665*best_momentum*best_weight+jumlah_epochs
+        print("Hasil 150 Epochs adalah :")
+        print(last_maps)
+        print("Hasil Latih")
         
-        # print(tabulate(hasil, headers=['Iterasi', 'IOU', 'LR', 'Momentum','Weight', 'mAP']))
-        # print(t)
+        end = time.time()
+
+        t += end - start
+        
+        print(tabulate(hasil, headers=['Iterasi', 'IOU', 'LR', 'Momentum','Weight', 'mAP']))
+        print(t)
 
 
         # # Random Search MULTI
