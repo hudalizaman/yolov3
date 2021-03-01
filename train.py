@@ -677,6 +677,8 @@ if __name__ == '__main__':
             print("=========================")
             print("Iterasi ke : "+str(i[0]))
             print("=========================")
+            print("MAP NOW")
+            print(map_now)
             print("=========================")
             print("Map Terbaik :")
             print(best_map)
