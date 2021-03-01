@@ -616,7 +616,7 @@ if __name__ == '__main__':
                         #     best_momentum = momentum_hyp[no_momentum]
                         #     best_weight = weight_hyp[no_weight]
                         
-                        hyperx.append([no,iou_hyp[no_iou],lr_hyp[no_lr],momentum_hyp[no_momentum],weight_hyp[no_weight],map_now])
+                        hyperx.append([no,iou_hyp[no_iou],lr_hyp[no_lr],momentum_hyp[no_momentum],weight_hyp[no_weight],jumlah_epochs])
 
                         # hasil.append(hasil_sementara)
 
