@@ -591,52 +591,55 @@ if __name__ == '__main__':
         no_momentum=0
         no_weight=0
 
+        hyperx = []
+
         for i in iou_hyp:
             for j in lr_hyp:
                 for k in momentum_hyp:
                     for l in weight_hyp:
-                        hasil_sementara = []
-                        print("=========================")
-                        print(iou_hyp[no_iou])
-                        print(lr_hyp[no_lr])
-                        print(momentum_hyp[no_momentum])
-                        print(weight_hyp[no_weight])
-                        print("=========================")
-                        map_now = train(i,j,k,l,jumlah_epochs)
-                        # map_now = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
-                        # train(i,j,k,l,jumlah_epochs)
-
-                        if best_map < map_now:
-                            best_map = map_now
-                            best_iou = iou_hyp[no_iou]
-                            best_lr = lr_hyp[no_lr]
-                            best_momentum = momentum_hyp[no_momentum]
-                            best_weight = weight_hyp[no_weight]
                         
-                        hasil_sementara = [no,iou_hyp[no_iou],lr_hyp[no_lr],momentum_hyp[no_momentum],weight_hyp[no_weight],map_now]
+                        # hasil_sementara = []
+                        # print("=========================")
+                        # print(iou_hyp[no_iou])
+                        # print(lr_hyp[no_lr])
+                        # print(momentum_hyp[no_momentum])
+                        # print(weight_hyp[no_weight])
+                        # print("=========================")
+                        # # map_now = train(i,j,k,l,jumlah_epochs)
+                        # # map_now = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
+                        # # train(i,j,k,l,jumlah_epochs)
 
-                        hasil.append(hasil_sementara)
+                        # if best_map < map_now:
+                        #     best_map = map_now
+                        #     best_iou = iou_hyp[no_iou]
+                        #     best_lr = lr_hyp[no_lr]
+                        #     best_momentum = momentum_hyp[no_momentum]
+                        #     best_weight = weight_hyp[no_weight]
+                        
+                        hyperx.append([no,iou_hyp[no_iou],lr_hyp[no_lr],momentum_hyp[no_momentum],weight_hyp[no_weight],map_now])
 
-                        print("=========================")
-                        print("Iterasi ke : "+str(no))
-                        print("=========================")
-                        print("=========================")
-                        print("Map Terbaik :")
-                        print(best_map)
-                        print("HP Terbaik : ")
-                        print("=========================")
-                        print("IOU")
-                        print(best_iou)
-                        print("=========================")
-                        print("LR")
-                        print(best_lr)
-                        print("=========================")
-                        print("MOMENTUM")
-                        print(best_momentum)
-                        print("=========================")
-                        print("WEIGHT")
-                        print(best_weight)
-                        no = no + 1
+                        # hasil.append(hasil_sementara)
+
+                        # print("=========================")
+                        # print("Iterasi ke : "+str(no))
+                        # print("=========================")
+                        # print("=========================")
+                        # print("Map Terbaik :")
+                        # print(best_map)
+                        # print("HP Terbaik : ")
+                        # print("=========================")
+                        # print("IOU")
+                        # print(best_iou)
+                        # print("=========================")
+                        # print("LR")
+                        # print(best_lr)
+                        # print("=========================")
+                        # print("MOMENTUM")
+                        # print(best_momentum)
+                        # print("=========================")
+                        # print("WEIGHT")
+                        # print(best_weight)
+                        # no = no + 1
                         no_weight = no_weight +1
                     no_momentum = no_momentum+1
                     no_weight = 0
@@ -648,22 +651,22 @@ if __name__ == '__main__':
             no_momentum = 0
             no_weight = 0
 
-        print(hasil)
+        print(hyperx)
 
         # jumlah_epochs = 150
 
-        last_maps = train(best_iou, best_lr, best_momentum, best_weight, 150)
-        # last_maps = best_iou**5 + best_lr**4 -best_momentum**3-best_weight**6+512*best_iou*best_lr-665*best_momentum*best_weight+jumlah_epochs
-        print("Hasil 150 Epochs adalah :")
-        print(last_maps)
-        print("Hasil Latih")
+        # last_maps = train(best_iou, best_lr, best_momentum, best_weight, 150)
+        # # last_maps = best_iou**5 + best_lr**4 -best_momentum**3-best_weight**6+512*best_iou*best_lr-665*best_momentum*best_weight+jumlah_epochs
+        # print("Hasil 150 Epochs adalah :")
+        # print(last_maps)
+        # print("Hasil Latih")
         
-        end = time.time()
+        # end = time.time()
 
-        t += end - start
+        # t += end - start
         
-        print(tabulate(hasil, headers=['Iterasi', 'IOU', 'LR', 'Momentum','Weight', 'mAP']))
-        print(t)
+        # print(tabulate(hasil, headers=['Iterasi', 'IOU', 'LR', 'Momentum','Weight', 'mAP']))
+        # print(t)
 
 
         # # Random Search MULTI
