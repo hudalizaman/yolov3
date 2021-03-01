@@ -661,7 +661,7 @@ if __name__ == '__main__':
             print(i[3])
             print(i[4])
             print("=========================")
-            map_now = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
+            map_now = i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs
             # train(i[1],i[2],i[3],i[4],i[5])
 
             if best_map < map_now:
@@ -696,7 +696,7 @@ if __name__ == '__main__':
 
         jumlah_epochs = 150
 
-        last_maps = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
+        last_maps = i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs
         # train(best_iou, best_lr, best_momentum, best_weight, 150)
         # last_maps = best_iou**5 + best_lr**4 -best_momentum**3-best_weight**6+512*best_iou*best_lr-665*best_momentum*best_weight+jumlah_epochs
         print("Hasil 150 Epochs adalah :")
