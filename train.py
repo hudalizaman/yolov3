@@ -667,8 +667,10 @@ if __name__ == '__main__':
             # train(i[1],i[2],i[3],i[4],i[5])
             print("=== best map ===")            
             print(type(best_map))
+            print(best_map)
             print("=== map now ===")
             print(type(map_now))
+            print(map_now)
             if best_map < map_now:
                 best_map = map_now
                 best_iou = i[1]
