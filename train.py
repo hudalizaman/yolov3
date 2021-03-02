@@ -661,31 +661,38 @@ if __name__ == '__main__':
             print(i[3])
             print(i[4])
             print("=========================")
-            map_now = train(i[1],i[2],i[3],i[4],jumlah_epochs) 
+            map_now = i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs 
             # train(i[1],i[2],i[3],i[4],jumlah_epochs) 
             # i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs
             # train(i[1],i[2],i[3],i[4],i[5])
             print("=== best map ===")            
             print(type(best_map))
+
             print(best_map)
             print("=== map now ===")
             print(type(map_now))
             print(map_now)
-            if best_map < map_now:
-                best_map = map_now
-                best_iou = i[1]
-                best_lr = i[2]
-                best_momentum = i[3]
-                best_weight = i[4]
+
 
             hasil_sementara = [i[0],i[1],i[2],i[3],i[4],map_now]
             hasil.append(hasil_sementara)
 
+        print("=== Hasil === ")
+        print(type(hasil))
+        print(hasil)
+        for iterasi in hasil:
+            if best_map < iterasi[5]:
+                best_map = iterasi[5]
+                best_iou = iterasi[1]
+                best_lr = iterasi[2]
+                best_momentum = iterasi[3]
+                best_weight = iterasi[4]
+
             print("=========================")
-            print("Iterasi ke : "+str(i[0]))
+            print("Iterasi ke : "+str(iterasi[0]))
             print("=========================")
             print("MAP NOW")
-            print(map_now)
+            print(iterasi[5])
             print("=========================")
             print("Map Terbaik :")
             print(best_map)
@@ -705,7 +712,7 @@ if __name__ == '__main__':
 
         jumlah_epochs = 150
 
-        last_maps = train(best_iou, best_lr, best_momentum, best_weight, 150) 
+        last_maps = i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs
         # train(best_iou, best_lr, best_momentum, best_weight, 150) 
         # i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs
         # train(best_iou, best_lr, best_momentum, best_weight, 150)
