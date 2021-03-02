@@ -665,7 +665,9 @@ if __name__ == '__main__':
             # train(i[1],i[2],i[3],i[4],jumlah_epochs) 
             # i[1]**5 + i[2]**4 -i[3]**3-i[4]**6+512*i[1]*i[2]-665*i[3]*i[4]+jumlah_epochs
             # train(i[1],i[2],i[3],i[4],i[5])
+            print("=== best map ===")            
             print(type(best_map))
+            print("=== map now ===")
             print(type(map_now))
             if best_map < map_now:
                 best_map = map_now
