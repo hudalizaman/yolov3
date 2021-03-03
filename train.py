@@ -387,6 +387,10 @@ def train(u,v,w,x,y):
 
     print("Keluaran")
     print(best_fitness)
+
+    if best_fitness = 0.0:
+        best_fitness[0] = 0
+
     print(best_fitness[0])
     print("=============")
     print(type(best_fitness[0]))
