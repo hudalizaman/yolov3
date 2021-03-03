@@ -482,7 +482,7 @@ if __name__ == '__main__':
 
             tb_writer = SummaryWriter()
         except:
-            pass
+            pass    
 
 
         
