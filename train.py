@@ -389,14 +389,16 @@ def train(u,v,w,x,y):
     print(best_fitness)
 
     if best_fitness == 0.0:
-        best_fitness[0] = 0
+        keluarannya = 0.0
+    else:
+        keluarannya = best_fitness[0]
 
-    print(best_fitness[0])
+    print(keluarannya)
     print("=============")
-    print(type(best_fitness[0]))
+    # print(type(best_fitness[0]))
     # from random import random
 
-    return best_fitness[0]
+    return keluarannya
 
 
 
