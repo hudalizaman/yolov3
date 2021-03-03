@@ -608,48 +608,9 @@ if __name__ == '__main__':
             for j in lr_hyp:
                 for k in momentum_hyp:
                     for l in weight_hyp:
-                        
-                        # hasil_sementara = []
-                        # print("=========================")
-                        # print(iou_hyp[no_iou])
-                        # print(lr_hyp[no_lr])
-                        # print(momentum_hyp[no_momentum])
-                        # print(weight_hyp[no_weight])
-                        # print("=========================")
-                        # # map_now = train(i,j,k,l,jumlah_epochs)
-                        # # map_now = i**5 + j**4 -k**3-l**6+512*i*j-665*l*k+jumlah_epochs
-                        # # train(i,j,k,l,jumlah_epochs)
-
-                        # if best_map < map_now:
-                        #     best_map = map_now
-                        #     best_iou = iou_hyp[no_iou]
-                        #     best_lr = lr_hyp[no_lr]
-                        #     best_momentum = momentum_hyp[no_momentum]
-                        #     best_weight = weight_hyp[no_weight]
-                        
+                                             
                         hyperx.append([no,iou_hyp[no_iou],lr_hyp[no_lr],momentum_hyp[no_momentum],weight_hyp[no_weight],jumlah_epochs])
 
-                        # hasil.append(hasil_sementara)
-
-                        # print("=========================")
-                        # print("Iterasi ke : "+str(no))
-                        # print("=========================")
-                        # print("=========================")
-                        # print("Map Terbaik :")
-                        # print(best_map)
-                        # print("HP Terbaik : ")
-                        # print("=========================")
-                        # print("IOU")
-                        # print(best_iou)
-                        # print("=========================")
-                        # print("LR")
-                        # print(best_lr)
-                        # print("=========================")
-                        # print("MOMENTUM")
-                        # print(best_momentum)
-                        # print("=========================")
-                        # print("WEIGHT")
-                        # print(best_weight)
                         no = no + 1
                         no_weight = no_weight +1
                     no_momentum = no_momentum+1
