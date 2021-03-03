@@ -473,7 +473,7 @@ if __name__ == '__main__':
             pass
 
         hyp = hyp_x
-        train(0.25, 0.01, 0.999, 0.001, opt.epochs)  # train normally
+        train(0.25, 0.005, 0.9495, 0.001, opt.epochs)  # train normally
 
     else:  # Evolve hyperparameters (optional)
         try:
