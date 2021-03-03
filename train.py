@@ -465,6 +465,7 @@ if __name__ == '__main__':
         except:
             pass
 
+        hyp = hyp_x
         train(0.5, 0.05, 0.9495, 0.0005, 60)  # train normally
 
     else:  # Evolve hyperparameters (optional)
