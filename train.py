@@ -823,9 +823,7 @@ if __name__ == '__main__':
 
         t += end - start
 
-        print("Hasil Latih")    
-        for i, res in enumerate(optimizer.res):
-            print("Iteration {}: \n\t{}".format(i, res))
+     
 
         print(t)
 
