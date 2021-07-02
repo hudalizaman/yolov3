@@ -902,55 +902,55 @@ if __name__ == '__main__':
 
 
 
-        # # Bayesian OPT
+        # Bayesian OPT
 
-        # t = 0 
-        # start = time.time()
+        t = 0 
+        start = time.time()
 
-        # hyp = hyp_x
-        # from bayes_opt import BayesianOptimization
+        hyp = hyp_x
+        from bayes_opt import BayesianOptimization
 
-        # # Parameter Space
-        # pbounds  = {'u':(0.0 , 0.5), 'v':(0.001 , 0.01), 'w':(0.90 , 0.99), 'x':(0.0001 , 0.001), 'y':(60.0,60.0)}
+        # Parameter Space
+        pbounds  = {'u':(0.0 , 0.5), 'v':(0.001 , 0.01), 'w':(0.90 , 0.99), 'x':(0.0001 , 0.001), 'y':(60.0,60.0)}
 
         
 
-        # optimizer = BayesianOptimization(
-        #     f=train,
-        #     pbounds = pbounds,
-        #     verbose = 2,
-        #     random_state=1
-        # )
+        optimizer = BayesianOptimization(
+            f=train,
+            pbounds = pbounds,
+            verbose = 2,
+            random_state=1
+        )
 
-        # optimizer.maximize(
-        #     init_points = 3,
-        #     n_iter = 10
+        optimizer.maximize(
+            init_points = 3,
+            n_iter = 10
 
-        # )
+        )
         
-        # print(optimizer.max)
+        print(optimizer.max)
 
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
-        # best_iou = optimizer.max["params"]["u"]
-        # best_lr = optimizer.max["params"]["v"]
-        # best_momentum = optimizer.max["params"]["w"]
-        # best_wd = optimizer.max["params"]["x"]
+        best_iou = optimizer.max["params"]["u"]
+        best_lr = optimizer.max["params"]["v"]
+        best_momentum = optimizer.max["params"]["w"]
+        best_wd = optimizer.max["params"]["x"]
 
-        # last_maps = train(best_iou,best_lr,best_momentum,best_wd, 150)
-        # print("Hasil 150 Epochs adalah :")
-        # print(last_maps)
+        last_maps = train(best_iou,best_lr,best_momentum,best_wd, 150)
+        print("Hasil 150 Epochs adalah :")
+        print(last_maps)
 
-        # end = time.time()
+        end = time.time()
 
-        # t += end - start
+        t += end - start
 
-        # print("Hasil Latih")    
-        # for i, res in enumerate(optimizer.res):
-        #     print("Iteration {}: \n\t{}".format(i, res))
+        print("Hasil Latih")    
+        for i, res in enumerate(optimizer.res):
+            print("Iteration {}: \n\t{}".format(i, res))
 
-        # print(t)
+        print(t)
 
 
 
