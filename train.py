@@ -925,7 +925,6 @@ if __name__ == '__main__':
         optimizer.maximize(
             init_points = 3,
             n_iter = 10
-
         )
         
         print(optimizer.max)
@@ -951,10 +950,6 @@ if __name__ == '__main__':
             print("Iteration {}: \n\t{}".format(i, res))
 
         print(t)
-
-
-
-
         
         # opt.notest, opt.nosave = True, True  # only test/save final epoch
         # if opt.bucket:
