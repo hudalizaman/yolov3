@@ -924,7 +924,7 @@ if __name__ == '__main__':
 
         optimizer.maximize(
             init_points = 3,
-            n_iter = 10
+            n_iter = 7
         )
         
         print(optimizer.max)
